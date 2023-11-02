@@ -1,3 +1,4 @@
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdio.h>
@@ -21,7 +22,8 @@ class Game{
     SDL_Texture* gTexture = NULL;
     //global reference to png image sheets
     SDL_Texture* assets=NULL;
-    
+
+    //Mix_Music *bgMusic = NULL;
 
 public:
 

@@ -1,5 +1,5 @@
 #include "game.hpp"
-// #include "HUMania.hpp"
+#include "Sprite.hpp"
 bool Game::init()
 {
 	//Initialization flag
@@ -20,7 +20,7 @@ bool Game::init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow( "HU Mania", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		gWindow = SDL_CreateWindow( "Geometry Dash", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
 		if( gWindow == NULL )
 		{
 			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -60,13 +60,21 @@ bool Game::loadMedia()
 	//Loading success flag
 	bool success = true;
 	
-	assets = loadTexture("assets.png");
-    gTexture = loadTexture("hu.png");
+	assets = loadTexture("sprite.png");
+    gTexture = loadTexture("bg.png");
 	if(assets==NULL || gTexture==NULL)
     {
         printf("Unable to run due to error: %s\n",SDL_GetError());
         success =false;
     }
+
+	// bgMusic = Mix_LoadMUS("background.wav");
+
+	// if (bgMusic == NULL)
+	// {
+	// 	printf("Unable to load music: %s \n", Mix_GetError());
+	// 	success = false;
+	// }
 	return success;
 }
 
@@ -82,6 +90,8 @@ void Game::close()
 	SDL_DestroyWindow( gWindow );
 	gWindow = NULL;
 	gRenderer = NULL;
+	// Mix_FreeMusic(bgMusic);
+	// bgMusic = NULL;
 	//Quit SDL subsystems
 	IMG_Quit();
 	SDL_Quit();
@@ -111,6 +121,7 @@ SDL_Texture* Game::loadTexture( std::string path )
 		SDL_FreeSurface( loadedSurface );
 	}
 
+
 	return newTexture;
 }
 void Game::run( )
@@ -134,15 +145,20 @@ void Game::run( )
 			//this is a good location to add pigeon in linked list.
 				int xMouse, yMouse;
 				SDL_GetMouseState(&xMouse,&yMouse);
-				//createObject(xMouse, yMouse);
+				createObject(xMouse, yMouse);
 			}
 		}
+		// if (Mix_PlayingMusic() == 0)
+		// {
+		// 	// Play the music
+		// 	Mix_PlayMusic(bgMusic, 2);
+		// }
 
 		SDL_RenderClear(gRenderer); //removes everything from renderer
 		SDL_RenderCopy(gRenderer, gTexture, NULL, NULL);//Draws background to renderer
 		//***********************draw the objects here********************
 
-		//drawObjects(gRenderer, assets);
+		drawObjects(gRenderer, assets);
 
 		//****************************************************************
     	SDL_RenderPresent(gRenderer); //displays the updated renderer
