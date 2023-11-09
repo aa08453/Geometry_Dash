@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\metaflac.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\metaflac.dir/objects.a @CMakeFiles\metaflac.dir\objects1.rsp
+C:\msys64\ucrt64\bin\cc.exe  -fstack-protector -Wall -Wextra -Wstrict-prototypes -Wmissing-prototypes -Waggregate-return -Wcast-align -Wnested-externs -Wshadow -Wundef -Wmissing-declarations -Winline -Wl,--whole-archive CMakeFiles\metaflac.dir/objects.a -Wl,--no-whole-archive -o metaflac.exe -Wl,--out-implib,libmetaflac.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\metaflac.dir\linkLibs.rsp

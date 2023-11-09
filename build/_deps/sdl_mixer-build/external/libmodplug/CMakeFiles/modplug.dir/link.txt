@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\modplug.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\modplug.dir/objects.a @CMakeFiles\modplug.dir\objects1.rsp
+C:\msys64\ucrt64\bin\c++.exe  -fstack-protector -shared -o libmodplug.dll -Wl,--out-implib,libmodplug.dll.a -Wl,--major-image-version,1,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\modplug.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\modplug.dir\linkLibs.rsp

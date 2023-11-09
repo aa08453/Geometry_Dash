@@ -1,0 +1,3 @@
+C:/Users/user/Desktop/OOP_Project/build/_deps/sdl-subbuild/CMakeFiles/sdl-populate.dir
+C:/Users/user/Desktop/OOP_Project/build/_deps/sdl-subbuild/CMakeFiles/edit_cache.dir
+C:/Users/user/Desktop/OOP_Project/build/_deps/sdl-subbuild/CMakeFiles/rebuild_cache.dir

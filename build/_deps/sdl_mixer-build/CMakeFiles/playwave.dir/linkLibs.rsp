@@ -1,0 +1,1 @@
+ -lmingw32 libSDL2_mixer.a "../sdl-build/libSDL2main.a" "../sdl-build/libSDL2.a" -lm -lkernel32 -luser32 -lgdi32 -limm32 -lole32 -loleaut32 -lversion -luuid -ladvapi32 -lsetupapi -ldinput8 -lwinmm -lshell32 -Wl,--undefined=WinMain -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

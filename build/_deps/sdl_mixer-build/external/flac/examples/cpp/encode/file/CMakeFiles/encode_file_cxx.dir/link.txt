@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\encode_file_cxx.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\encode_file_cxx.dir/objects.a @CMakeFiles\encode_file_cxx.dir\objects1.rsp
+C:\msys64\ucrt64\bin\c++.exe  -fstack-protector -Wall -Wextra -Wcast-align -Wshadow -Wwrite-strings -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder -Wsign-promo -Wundef -Wl,--whole-archive CMakeFiles\encode_file_cxx.dir/objects.a -Wl,--no-whole-archive -o encode_file_cxx.exe -Wl,--out-implib,libencode_file_cxx.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\encode_file_cxx.dir\linkLibs.rsp

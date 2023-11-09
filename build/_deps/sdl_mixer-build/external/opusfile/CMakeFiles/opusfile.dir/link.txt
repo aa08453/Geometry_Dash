@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\opusfile.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\opusfile.dir/objects.a @CMakeFiles\opusfile.dir\objects1.rsp
+C:\msys64\ucrt64\bin\cc.exe  -fstack-protector -shared -o libopusfile.dll -Wl,--out-implib,libopusfile.dll.a -Wl,--major-image-version,0,--minor-image-version,12 -Wl,--whole-archive CMakeFiles\opusfile.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\opusfile.dir\linkLibs.rsp

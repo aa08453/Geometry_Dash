@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\seeking_example.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\seeking_example.dir/objects.a @CMakeFiles\seeking_example.dir\objects1.rsp
+C:\msys64\ucrt64\bin\cc.exe  -fstack-protector -Wl,--whole-archive CMakeFiles\seeking_example.dir/objects.a -Wl,--no-whole-archive -o seeking_example.exe -Wl,--out-implib,libseeking_example.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\seeking_example.dir\linkLibs.rsp

@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\FLAC++.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\FLAC++.dir/objects.a @CMakeFiles\FLAC++.dir\objects1.rsp
+C:\msys64\ucrt64\bin\c++.exe  -fstack-protector -Wall -Wextra -Wcast-align -Wshadow -Wwrite-strings -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder -Wsign-promo -Wundef -shared -o libFLAC++.dll -Wl,--out-implib,libFLAC++.dll.a -Wl,--major-image-version,6,--minor-image-version,3 -Wl,--whole-archive CMakeFiles\FLAC++.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\FLAC++.dir\linkLibs.rsp

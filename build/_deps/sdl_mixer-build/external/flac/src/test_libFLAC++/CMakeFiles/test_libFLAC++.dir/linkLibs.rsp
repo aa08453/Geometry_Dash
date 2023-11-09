@@ -1,0 +1,1 @@
+ ../libFLAC++/libFLAC++.dll.a ../test_libs_common/libtest_libs_common.a ../share/grabbag/libgrabbag.a ../libFLAC/libFLAC.dll.a -lm ../share/replaygain_analysis/libreplaygain_analysis.a -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
