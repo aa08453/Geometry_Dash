@@ -1,2 +1,0 @@
-C:\msys64\ucrt64\bin\ar.exe qc libreplaygain_analysis.a CMakeFiles/replaygain_analysis.dir/replaygain_analysis.c.obj
-C:\msys64\ucrt64\bin\ranlib.exe libreplaygain_analysis.a

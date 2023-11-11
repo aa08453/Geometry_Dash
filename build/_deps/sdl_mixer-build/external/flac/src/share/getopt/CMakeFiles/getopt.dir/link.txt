@@ -1,2 +1,0 @@
-C:\msys64\ucrt64\bin\ar.exe qc libgetopt.a CMakeFiles/getopt.dir/getopt.c.obj CMakeFiles/getopt.dir/getopt1.c.obj
-C:\msys64\ucrt64\bin\ranlib.exe libgetopt.a

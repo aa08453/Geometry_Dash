@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\flacapp.dir/objects.a
-C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\flacapp.dir/objects.a @CMakeFiles\flacapp.dir\objects1.rsp
-C:\msys64\ucrt64\bin\cc.exe  -fstack-protector -Wall -Wextra -Wstrict-prototypes -Wmissing-prototypes -Waggregate-return -Wcast-align -Wnested-externs -Wshadow -Wundef -Wmissing-declarations -Winline -Wl,--whole-archive CMakeFiles\flacapp.dir/objects.a -Wl,--no-whole-archive -o flac.exe -Wl,--out-implib,libflacapp.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\flacapp.dir\linkLibs.rsp

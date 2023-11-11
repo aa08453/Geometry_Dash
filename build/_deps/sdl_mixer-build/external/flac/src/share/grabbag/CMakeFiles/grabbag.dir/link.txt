@@ -1,2 +1,0 @@
-C:\msys64\ucrt64\bin\ar.exe qc libgrabbag.a CMakeFiles/grabbag.dir/alloc.c.obj CMakeFiles/grabbag.dir/cuesheet.c.obj CMakeFiles/grabbag.dir/file.c.obj CMakeFiles/grabbag.dir/picture.c.obj CMakeFiles/grabbag.dir/replaygain.c.obj CMakeFiles/grabbag.dir/seektable.c.obj CMakeFiles/grabbag.dir/snprintf.c.obj
-C:\msys64\ucrt64\bin\ranlib.exe libgrabbag.a
