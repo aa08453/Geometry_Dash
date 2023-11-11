@@ -24,6 +24,8 @@ class Game
     // global reference to png image sheets
     SDL_Texture *assets = NULL;
 
+    SDL_Texture *obstacles = NULL;
+
     // Mix_Music *bgMusic = NULL;
 
 public:

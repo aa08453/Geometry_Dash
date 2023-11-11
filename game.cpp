@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "Sprite.hpp"
+#include "Spike.hpp"
 bool Game::init()
 {
 	// Initialization flag
@@ -63,8 +64,9 @@ bool Game::loadMedia()
 	bool success = true;
 
 	assets = loadTexture("sprite.png");
-	gTexture = loadTexture("bg.png");
-	if (assets == NULL || gTexture == NULL)
+	gTexture = loadTexture("new_bg.png");
+	obstacles = loadTexture("FakeSpike03.png");
+	if (assets == NULL || gTexture == NULL || obstacles == NULL)
 	{
 		printf("Unable to run due to error: %s\n", SDL_GetError());
 		success = false;
@@ -96,7 +98,8 @@ void Game::close()
 	SDL_DestroyTexture(assets);
 	assets = NULL;
 	SDL_DestroyTexture(gTexture);
-
+	SDL_DestroyTexture(obstacles);
+	obstacles = NULL;
 	// Destroy window
 	SDL_DestroyRenderer(gRenderer);
 	SDL_DestroyWindow(gWindow);
@@ -151,6 +154,7 @@ void Game::run()
 				quit = true;
 			}
 			createObject();
+			createObstacles();
 			// if (e.type == SDL_MOUSEBUTTONDOWN)
 			// {
 				// this is a good location to add pigeon in linked list.
@@ -168,8 +172,9 @@ void Game::run()
 		SDL_RenderClear(gRenderer);						 // removes everything from renderer
 		SDL_RenderCopy(gRenderer, gTexture, NULL, NULL); // Draws background to renderer
 		//**********************draw the objects here*******************
-
+		Spike
 		drawObjects(gRenderer, assets);
+
 
 		//****************************************************************
 		SDL_RenderPresent(gRenderer); // displays the updated renderer
