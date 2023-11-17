@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <SDL_mixer.h>
+#include "Objects.hpp"
+#include "drawing.hpp"
 
 class Game
 {
@@ -16,17 +18,8 @@ class Game
     // The window we'll be rendering to
     SDL_Window *gWindow = NULL;
 
-    // The window renderer
-    SDL_Renderer *gRenderer = NULL;
-
     // Current displayed texture
     SDL_Texture *gTexture = NULL;
-    // global reference to png image sheets
-    SDL_Texture *assets = NULL;
-
-    SDL_Texture *obstacles = NULL;
-
-    // Mix_Music *bgMusic = NULL;
 
 public:
     bool init();

@@ -1,19 +1,12 @@
-#include <SDL.h>
+//#include <SDL.h>
+//#include "Objects.hpp"
+#include "drawing.hpp"
+#include "Obstacles.hpp"
 
-class Spike
+class Spike : public Obstacles
 {
-    public:
-        Spike() = default;
-        void drawObjects(SDL_Renderer *gRnderer, SDL_Texture *assets);
-        void createObject(/*int x,int y*/);
-
-    private:
-        vector<Unit> spikes;
-        static int a{0};
-};
-
-
-struct Unit
-{
-    SDL_Rect srcRect, moverRect;
+public:
+    //void fly();
+    Spike();
+    // may add other overloaded constructors here...
 };

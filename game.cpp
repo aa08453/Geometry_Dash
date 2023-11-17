@@ -1,6 +1,8 @@
 #include "game.hpp"
-#include "Sprite.hpp"
-#include "Spike.hpp"
+
+SDL_Renderer *Drawing::gRenderer = NULL;
+SDL_Texture *Drawing::assets = NULL;
+SDL_Texture *Drawing::obstacles = NULL;
 bool Game::init()
 {
 	// Initialization flag
@@ -30,8 +32,8 @@ bool Game::init()
 		else
 		{
 			// Create renderer for window
-			gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
-			if (gRenderer == NULL)
+			Drawing::gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+			if (Drawing::gRenderer == NULL)
 			{
 				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
 				success = false;
@@ -39,7 +41,7 @@ bool Game::init()
 			else
 			{
 				// Initialize renderer color
-				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_SetRenderDrawColor(Drawing::gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
 				// Initialize PNG loading
 				int imgFlags = IMG_INIT_PNG;
@@ -63,10 +65,10 @@ bool Game::loadMedia()
 	// Loading success flag
 	bool success = true;
 
-	assets = loadTexture("sprite.png");
-	gTexture = loadTexture("new_bg.png");
-	obstacles = loadTexture("FakeSpike03.png");
-	if (assets == NULL || gTexture == NULL || obstacles == NULL)
+	Drawing::assets = loadTexture("sprite.png");
+	gTexture = loadTexture("bg.png");
+	Drawing::obstacles = loadTexture("FakeSpike03.png");
+	if (Drawing::assets == NULL || gTexture == NULL  ||Drawing::obstacles == NULL)
 	{
 		printf("Unable to run due to error: %s\n", SDL_GetError());
 		success = false;
@@ -79,35 +81,27 @@ bool Game::loadMedia()
 		printf("Unable to load music: %s\n", Mix_GetError());
 		success = false;
 	}
-	// Mix_Chunk* sound=
+
 	Mix_PlayMusic(music, -1);
 
-	// bgMusic = Mix_LoadMUS("background.wav");
-
-	// if (bgMusic == NULL)
-	// {
-	// 	printf("Unable to load music: %s \n", Mix_GetError());
-	// 	success = false;
-	// }
 	return success;
 }
 
 void Game::close()
 {
 	// Free loaded images
-	SDL_DestroyTexture(assets);
-	assets = NULL;
+	SDL_DestroyTexture(Drawing::assets);
+	Drawing::assets = NULL;
 	SDL_DestroyTexture(gTexture);
-	SDL_DestroyTexture(obstacles);
-	obstacles = NULL;
+	SDL_DestroyTexture(Drawing::obstacles);
+	Drawing::obstacles = NULL;
+	Mix_Music *music = NULL;
 	// Destroy window
-	SDL_DestroyRenderer(gRenderer);
+	SDL_DestroyRenderer(Drawing::gRenderer);
 	SDL_DestroyWindow(gWindow);
 	gWindow = NULL;
-	gRenderer = NULL;
-	// Mix_FreeMusic(bgMusic);
-	// bgMusic = NULL;
-	// Quit SDL subsystems
+	Drawing::gRenderer = NULL;
+
 	IMG_Quit();
 	SDL_Quit();
 }
@@ -126,7 +120,7 @@ SDL_Texture *Game::loadTexture(std::string path)
 	else
 	{
 		// Create texture from surface pixels
-		newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+		newTexture = SDL_CreateTextureFromSurface(Drawing::gRenderer, loadedSurface);
 		if (newTexture == NULL)
 		{
 			printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
@@ -142,7 +136,7 @@ void Game::run()
 {
 	bool quit = false;
 	SDL_Event e;
-
+	Objects obj;
 	while (!quit)
 	{
 		// Handle events on queue
@@ -153,8 +147,8 @@ void Game::run()
 			{
 				quit = true;
 			}
-			createObject();
-			createObstacles();
+			obj.createObject();
+			//createObstacles();
 			// if (e.type == SDL_MOUSEBUTTONDOWN)
 			// {
 				// this is a good location to add pigeon in linked list.
@@ -163,22 +157,20 @@ void Game::run()
 		
 			// }
 		}
-		// if (Mix_PlayingMusic() == 0)
-		// {
-		// 	// Play the music
-		// 	Mix_PlayMusic(bgMusic, 2);
-		// }
 
-		SDL_RenderClear(gRenderer);						 // removes everything from renderer
-		SDL_RenderCopy(gRenderer, gTexture, NULL, NULL); // Draws background to renderer
+
+		SDL_RenderClear(Drawing::gRenderer);						 // removes everything from renderer
+		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL); // Draws background to renderer
 		//**********************draw the objects here*******************
-		Spike
-		drawObjects(gRenderer, assets);
+		
+		obj.drawObjects();
 
 
 		//****************************************************************
-		SDL_RenderPresent(gRenderer); // displays the updated renderer
+		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
 
 		SDL_Delay(200); // causes sdl engine to delay for specified miliseconds
 	}
 }
+
+

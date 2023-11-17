@@ -1,21 +1,10 @@
-#include <iostream>
 #include "Spike.hpp"
-#include <vector>
 
-#include <cstdlib>
-
-void Spike::drawObjects(SDL_Renderer *gRenderer, SDL_Texture *assets)
+Spike::Spike()
 {
-    SDL_RenderCopy(gRenderer, assets, &spikes[0].srcRect, &spikes[0].moverRect);
-}
+    // src coorinates from assets.png file, they have been found using spritecow.com
+    srcRect = {0, 0, 82, 78};
 
-void Spike::createObject()
-{
-    if (a < 1)
-    {
-        cout << "Creating\n";
-        Unit spike = {{0, 0, 82, 78}, {900, 500, 20, 20}};
-        spikes.emplace_back(spike);
-    }
-    a++;
+    // it will display pigeon on x = 30, y = 40 location, the size of pigeon is 50 width, 60 height
+    moverRect = {30, 40, 50, 50};
 }

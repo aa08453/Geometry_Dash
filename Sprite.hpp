@@ -1,19 +1,11 @@
-#include<SDL.h>
+// #include<SDL.h>
+#include "drawing.hpp"
+#include "Obstacles.hpp"
 
-class Sprite
+class Sprite : public Obstacles
 {
-    public:
-        Sprite() = default;
-        void drawObjects(SDL_Renderer *gRnderer, SDL_Texture *assets);
-        void createObject(/*int x,int y*/);
-
-    private:
-        vector<Unit> sprites;
-        static int a{0};
-}
-
-
-struct Unit
-{
-    SDL_Rect srcRect, moverRect;
+public:
+    //void fly();
+    Sprite();
+    // may add other overloaded constructors here...
 };
