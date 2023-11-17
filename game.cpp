@@ -65,9 +65,9 @@ bool Game::loadMedia()
 	// Loading success flag
 	bool success = true;
 
-	Drawing::assets = loadTexture("sprite.png");
+	Drawing::assets = loadTexture("assets.png");
 	gTexture = loadTexture("bg.png");
-	Drawing::obstacles = loadTexture("FakeSpike03.png");
+	//Drawing::obstacles = loadTexture("FakeSpike03.png");
 	if (Drawing::assets == NULL || gTexture == NULL  /*||Drawing::obstacles == NULL*/)
 	{
 		printf("Unable to run due to error: %s\n", SDL_GetError());
