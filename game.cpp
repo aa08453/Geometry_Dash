@@ -1,7 +1,9 @@
 #include "game.hpp"
 
+
 SDL_Renderer *Drawing::gRenderer = NULL;
 SDL_Texture *Drawing::assets = NULL;
+SDL_Texture *Drawing::ground = NULL;
 //SDL_Texture *Drawing::obstacles = NULL;
 bool Game::init()
 {
@@ -68,7 +70,8 @@ bool Game::loadMedia()
 	Drawing::assets = loadTexture("assets.png");
 	gTexture = loadTexture("bg.png");
 	//Drawing::obstacles = loadTexture("FakeSpike03.png");
-	if (Drawing::assets == NULL || gTexture == NULL  /*||Drawing::obstacles == NULL*/)
+	Drawing::ground = loadTexture("platform.png");
+	if (Drawing::assets == NULL || gTexture == NULL  ||Drawing::ground == NULL)
 	{
 		printf("Unable to run due to error: %s\n", SDL_GetError());
 		success = false;
@@ -92,6 +95,8 @@ void Game::close()
 	// Free loaded images
 	SDL_DestroyTexture(Drawing::assets);
 	Drawing::assets = NULL;
+	SDL_DestroyTexture(Drawing::ground);
+	Drawing::ground = NULL;
 	SDL_DestroyTexture(gTexture);
 	//SDL_DestroyTexture(Drawing::obstacles);
 	//Drawing::obstacles = NULL;
@@ -137,6 +142,7 @@ void Game::run()
 	bool quit = false;
 	SDL_Event e;
 	Objects obj;
+	platform base;
 	while (!quit)
 	{
 		// Handle events on queue
@@ -164,12 +170,14 @@ void Game::run()
 		//**********************draw the objects here*******************
 		
 		obj.drawObjects();
+		base.displayBase(200, 200);
+		base.drawbase(Drawing::gRenderer, Drawing::ground);
 
 
 		//****************************************************************
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
 
-		SDL_Delay(200); // causes sdl engine to delay for specified miliseconds
+		SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
 	}
 }
 

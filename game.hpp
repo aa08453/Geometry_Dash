@@ -8,6 +8,7 @@
 #include <SDL_mixer.h>
 #include "Objects.hpp"
 #include "drawing.hpp"
+#include "platform.hpp"
 
 class Game
 {
