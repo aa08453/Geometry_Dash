@@ -2,7 +2,7 @@
 
 SDL_Renderer *Drawing::gRenderer = NULL;
 SDL_Texture *Drawing::assets = NULL;
-SDL_Texture *Drawing::obstacles = NULL;
+//SDL_Texture *Drawing::obstacles = NULL;
 bool Game::init()
 {
 	// Initialization flag
@@ -68,7 +68,7 @@ bool Game::loadMedia()
 	Drawing::assets = loadTexture("sprite.png");
 	gTexture = loadTexture("bg.png");
 	Drawing::obstacles = loadTexture("FakeSpike03.png");
-	if (Drawing::assets == NULL || gTexture == NULL  ||Drawing::obstacles == NULL)
+	if (Drawing::assets == NULL || gTexture == NULL  /*||Drawing::obstacles == NULL*/)
 	{
 		printf("Unable to run due to error: %s\n", SDL_GetError());
 		success = false;
@@ -93,8 +93,8 @@ void Game::close()
 	SDL_DestroyTexture(Drawing::assets);
 	Drawing::assets = NULL;
 	SDL_DestroyTexture(gTexture);
-	SDL_DestroyTexture(Drawing::obstacles);
-	Drawing::obstacles = NULL;
+	//SDL_DestroyTexture(Drawing::obstacles);
+	//Drawing::obstacles = NULL;
 	Mix_Music *music = NULL;
 	// Destroy window
 	SDL_DestroyRenderer(Drawing::gRenderer);
