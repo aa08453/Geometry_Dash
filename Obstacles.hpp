@@ -8,5 +8,5 @@ protected:
 
 public:
     void draw();
-    //virtual void fly();
+    virtual void move();
 };

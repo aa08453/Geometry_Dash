@@ -7,3 +7,8 @@ Sprite::Sprite()
     moverRect = {375, 385, 35, 35};
 
 }
+
+void Sprite::move()
+{
+    
+}
