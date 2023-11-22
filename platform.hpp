@@ -1,7 +1,5 @@
 #include<SDL.h>
 
-
-
 class platform
 {
 private:

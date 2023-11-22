@@ -18,7 +18,7 @@ void Objects::drawObjects()
     for (Obstacles *u : L)
     {
         u->draw();
-        //u->fly();
+        u->move();
     }
 }
 
@@ -26,9 +26,17 @@ void Objects::drawObjects()
 void Objects::createObject( )
 {
     //std::cout << "Mouse clicked at: " << x << " -- " << y << std::endl;
-    L.emplace_back(new Spike());
+    
     if (a < 1)
+    {
         L.emplace_back(new Sprite());
+        L.emplace_back(new Spike(500));
+        L.emplace_back(new Spike(750));
+
+        /* could make it input x values (hardcoding the game) for spikes and destroy each spike as it
+            goes out of the screen */ 
+
+    }
     a++;
 }
 void Objects::moveup(){

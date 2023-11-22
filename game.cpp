@@ -71,7 +71,7 @@ bool Game::loadMedia()
 	gTexture = loadTexture("new_bg.png");
 	//Drawing::obstacles = loadTexture("FakeSpike03.png");
 	Drawing::ground = loadTexture("platform.png");
-	if (Drawing::assets == NULL || gTexture == NULL  ||Drawing::ground == NULL)
+	if (Drawing::assets == NULL || gTexture == NULL  || Drawing::ground == NULL)
 	{
 		printf("Unable to run due to error: %s\n", SDL_GetError());
 		success = false;
@@ -98,8 +98,6 @@ void Game::close()
 	SDL_DestroyTexture(Drawing::ground);
 	Drawing::ground = NULL;
 	SDL_DestroyTexture(gTexture);
-	//SDL_DestroyTexture(Drawing::obstacles);
-	//Drawing::obstacles = NULL;
 	Mix_Music *music = NULL;
 	// Destroy window
 	SDL_DestroyRenderer(Drawing::gRenderer);
@@ -178,7 +176,6 @@ void Game::run()
 			//createObstacles();
 			// if (e.type == SDL_MOUSEBUTTONDOWN)
 			// {
-				// this is a good location to add pigeon in linked list.
 				int xMouse, yMouse;
 				SDL_GetMouseState(&xMouse, &yMouse);
 		

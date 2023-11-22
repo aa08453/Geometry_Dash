@@ -6,7 +6,8 @@
 class Spike : public Obstacles
 {
 public:
-    //void fly();
+    void move();
     Spike();
+    Spike(int x);
     // may add other overloaded constructors here...
 };

@@ -8,9 +8,13 @@ protected:
 
 public:
     void draw();
+
     SDL_Rect& getMoverRect() {
         return moverRect;
     }
 
     //virtual void fly();
+
+    virtual void move();
+
 };

@@ -5,7 +5,7 @@
 class Sprite : public Obstacles
 {
 public:
-    //void fly();
+    void move();
     Sprite();
     // may add other overloaded constructors here...
 };
