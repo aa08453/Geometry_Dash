@@ -8,3 +8,8 @@ void Obstacles::draw()
 void Obstacles::move()
 {
 }
+
+const int& Obstacles::get_position() const
+{
+    return moverRect.x;
+}

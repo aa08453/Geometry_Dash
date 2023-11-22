@@ -19,3 +19,5 @@ void Spike::move()
     moverRect.x -= 40;
     
 }
+
+

@@ -3,10 +3,12 @@
 class Obstacles
 {
 protected:
-    SDL_Rect srcRect, moverRect;
+   
     int frame = 0;
 
 public:
     void draw();
     virtual void move();
+    const int& get_position() const;
+    SDL_Rect srcRect, moverRect; // supposed to be protected
 };
