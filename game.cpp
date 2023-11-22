@@ -68,7 +68,7 @@ bool Game::loadMedia()
 	bool success = true;
 
 	Drawing::assets = loadTexture("assets.png");
-	gTexture = loadTexture("bg.png");
+	gTexture = loadTexture("new_bg.png");
 	//Drawing::obstacles = loadTexture("FakeSpike03.png");
 	Drawing::ground = loadTexture("platform.png");
 	if (Drawing::assets == NULL || gTexture == NULL  ||Drawing::ground == NULL)
@@ -153,6 +153,27 @@ void Game::run()
 			{
 				quit = true;
 			}
+
+			else if (e.type == SDL_KEYDOWN)
+            {
+                if (e.key.keysym.sym == SDLK_UP)
+                {
+                    // Call moveup() when the up arrow key is pressed
+                    obj.moveup();
+                }
+            }
+			//when the up arrow key is release so the ball have to come down
+			else if (e.type == SDL_KEYUP)
+            {
+                if (e.key.keysym.sym == SDLK_UP)
+                {
+                    // Call moveup() when the up arrow key is pressed
+                    obj.movedown();
+                }
+            }
+
+
+
 			obj.createObject();
 			//createObstacles();
 			// if (e.type == SDL_MOUSEBUTTONDOWN)
