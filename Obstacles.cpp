@@ -9,7 +9,9 @@ void Obstacles::move()
 {
 }
 
-const int& Obstacles::get_position() const
+const int& Obstacles::get_position(char a) const
 {
-    return moverRect.x;
+    if (a == 'x')
+        return moverRect.x;
+    return moverRect.y;
 }

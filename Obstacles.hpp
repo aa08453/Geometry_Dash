@@ -5,6 +5,7 @@ class Obstacles
 protected:
    
     int frame = 0;
+    SDL_Rect srcRect, moverRect; // supposed to be protected
 
 public:
     void draw();
@@ -16,7 +17,7 @@ public:
     //virtual void fly();
 
     virtual void move();
-    const int& get_position() const;
-    SDL_Rect srcRect, moverRect; // supposed to be protected
+    const int& get_position(char a) const;
+    
 
 };

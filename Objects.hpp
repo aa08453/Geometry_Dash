@@ -17,15 +17,17 @@ class Objects
     static bool crash;
     bool collision(Obstacles *u, Sprite *S);
     static int yjump;
-    
+    SDL_Rect &getMoverRect()
+    {
+        return moverRect;
+    }
+
 public:
     void drawObjects();
     void createObject( );
     void moveup();
     void movedown();
-    SDL_Rect& getMoverRect() {
-        return moverRect;
-    }
+    
 
         // created destructor which deletes all dynamic objects
     ~Objects();
