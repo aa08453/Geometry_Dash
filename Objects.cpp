@@ -1,8 +1,9 @@
 #include "Objects.hpp"
-
+#include<iostream>
+using namespace std;
 int Objects::a = 0;
 bool Objects::crash = false;
-
+int Objects::yjump=100;
 Objects::~Objects()
 {
     for (Obstacles *u : L)
@@ -64,4 +65,43 @@ bool Objects::collision(Obstacles* u, Sprite* S)
 {
     //std::cout << "Colliding" << std::endl;
     return (u->get_position() == S->get_position());
+}
+void Objects::moveup(){
+    
+    
+     SDL_Rect& obstacleRect = L[1]->getMoverRect();
+     
+        if (obstacleRect.y - yjump == 290)
+        {
+            obstacleRect.y -= yjump;
+            cout<<obstacleRect.y<<endl;
+            
+             // this part for testing
+        }
+        else
+        {
+            obstacleRect.y = 290;
+            cout<<obstacleRect.y<<endl;
+
+            // cout<<sprites[i].moverRect.y<<endl;
+        }
+    
+}
+
+void Objects::movedown(){
+    SDL_Rect& obstacleRect = L[1]->getMoverRect();
+    if (obstacleRect.y + yjump == 385)
+        {
+            obstacleRect.y += yjump;
+            cout<<obstacleRect.y<<endl;
+
+             // this part for testing
+        }
+    else
+        {
+            obstacleRect.y = 385;
+            cout<<obstacleRect.y<<endl;
+
+            // cout<<sprites[i].moverRect.y<<endl;
+        }
 }

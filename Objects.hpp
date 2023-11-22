@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include "Sprite.hpp"
 #include "Spike.hpp"
+#include "Obstacles.hpp"
 #include <vector>
 #include <list>
 #include <cstdlib>
@@ -15,11 +16,19 @@ class Objects
     static int a;
     static bool crash;
     bool collision(Obstacles *u, Sprite *S);
-
+    static int yjump;
+    
 public:
     void drawObjects();
     void createObject( );
+    void moveup();
+    void movedown();
+    SDL_Rect& getMoverRect() {
+        return moverRect;
+    }
 
         // created destructor which deletes all dynamic objects
     ~Objects();
+protected:
+    SDL_Rect srcRect, moverRect;
 };
