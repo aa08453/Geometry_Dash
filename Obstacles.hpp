@@ -9,15 +9,8 @@ protected:
 
 public:
     void draw();
-
-    SDL_Rect& getMoverRect() {
-        return moverRect;
-    }
-
-    //virtual void fly();
-
+    SDL_Rect& getMoverRect();
     virtual void move();
-    const int& get_position(char a) const;
     
 
 };

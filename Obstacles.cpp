@@ -5,13 +5,9 @@ void Obstacles::draw()
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
 
-void Obstacles::move()
-{
-}
+void Obstacles::move(){}
 
-const int& Obstacles::get_position(char a) const
+SDL_Rect& Obstacles::getMoverRect()
 {
-    if (a == 'x')
-        return moverRect.x;
-    return moverRect.y;
+    return moverRect;
 }

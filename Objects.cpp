@@ -37,12 +37,10 @@ void Objects::drawObjects()
     }
 }
 
-
 // creates new objects
 void Objects::createObject( )
 {
     //std::cout << "Mouse clicked at: " << x << " -- " << y << std::endl;
-    
     if (a < 1)
     {
         
@@ -57,12 +55,15 @@ void Objects::createObject( )
 
 bool Objects::collision(Obstacles* u, Sprite* S)
 {
-    return (u->get_position('x') <= S->get_position('x') && u->get_position('y') <= S->get_position('y'));
+    int a = S->getMoverRect().w;
+    int b = S->getMoverRect().x + S->getMoverRect().w;
+    int c = u->getMoverRect().x;
+    int d = S->getMoverRect().y;
+    int e = u->getMoverRect().y;
+    return ((a <= b && a >= c) && (d >= e));
 }
 
-
 void Objects::moveup(){
-    
     
      SDL_Rect& obstacleRect = S->getMoverRect();
      
