@@ -55,9 +55,9 @@ void Objects::createObject( )
 
 bool Objects::collision(Obstacles* u, Sprite* S)
 {
-    int a = S->getMoverRect().w;
+    int c = S->getMoverRect().x;
     int b = S->getMoverRect().x + S->getMoverRect().w;
-    int c = u->getMoverRect().x;
+    int a = u->getMoverRect().x;
     int d = S->getMoverRect().y;
     int e = u->getMoverRect().y;
     return ((a <= b && a >= c) && (d >= e));
