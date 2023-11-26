@@ -4,6 +4,8 @@
 SDL_Renderer *Drawing::gRenderer = NULL;
 SDL_Texture *Drawing::assets = NULL;
 SDL_Texture *Drawing::ground = NULL;
+	// currentState=MENU;
+
 //SDL_Texture *Drawing::obstacles = NULL;
 bool Game::init()
 {
@@ -65,10 +67,17 @@ bool Game::init()
 bool Game::loadMedia()
 {
 	// Loading success flag
-	bool success = true;
+	currentState=MENU;
 
+	bool success = true;
+    
 	Drawing::assets = loadTexture("assets.png");
 	gTexture = loadTexture("new_bg.png");
+
+	// mainMenuImage= loadTexture("Menu.png");
+	mainMenuImage = loadTexture("./Menu.png");
+
+	
 	//Drawing::obstacles = loadTexture("FakeSpike03.png");
 	Drawing::ground = loadTexture("platform.png");
 	if (Drawing::assets == NULL || gTexture == NULL  || Drawing::ground == NULL)
@@ -78,7 +87,8 @@ bool Game::loadMedia()
 	}
 
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
-	Mix_Music *music = Mix_LoadMUS("Stereo Madness.mp3");
+	Mix_Music *music = Mix_LoadMUS("Main Menu.mp3");
+	// Mix_Music *music1= Mix_LoadMUS("Main Menu.mp3");
 	if (music == NULL)
 	{
 		printf("Unable to load music: %s\n", Mix_GetError());
@@ -98,6 +108,8 @@ void Game::close()
 	SDL_DestroyTexture(Drawing::ground);
 	Drawing::ground = NULL;
 	SDL_DestroyTexture(gTexture);
+	SDL_DestroyTexture(mainMenuImage);
+
 	Mix_Music *music = NULL;
 	// Destroy window
 	SDL_DestroyRenderer(Drawing::gRenderer);
@@ -141,6 +153,8 @@ void Game::run()
 	SDL_Event e;
 	Objects obj;
 	platform base;
+
+	currentState=MENU;
 	while (!quit)
 	{
 		// Handle events on queue
@@ -152,44 +166,66 @@ void Game::run()
 				quit = true;
 			}
 
-			else if (e.type == SDL_KEYDOWN)
+			switch (currentState)
             {
-                if (e.key.keysym.sym == SDLK_UP)
+            case MENU:
+                if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
                 {
-                    // Call moveup() when the up arrow key is pressed
-                    obj.moveup();
+                currentState = PLAY; // Change to the play state when the Enter key is pressed
+				changeMusic("NewMusic.mp3");
+				obj.createObject();
                 }
+                break;
+				// obj.createObject();
+
+				
+
+
+            case PLAY:
+                
+			    if (e.type == SDL_KEYDOWN)
+                    {
+						if (e.key.keysym.sym == SDLK_UP)
+						{
+							obj.moveup();
+						}
+					}
+				else if (e.type == SDL_KEYUP)
+					{
+						if (e.key.keysym.sym == SDLK_UP)
+						{
+							obj.movedown();
+						}
+                    }
+
+			
+
+                break;
             }
-			//when the up arrow key is release so the ball have to come down
-			else if (e.type == SDL_KEYUP)
-            {
-                if (e.key.keysym.sym == SDLK_UP)
-                {
-                    // Call moveup() when the up arrow key is pressed
-                    obj.movedown();
-                }
-            }
 
-
-
-			obj.createObject();
-			//createObstacles();
-			// if (e.type == SDL_MOUSEBUTTONDOWN)
-			// {
-				int xMouse, yMouse;
-				SDL_GetMouseState(&xMouse, &yMouse);
-		
-			// }
 		}
 
-
-		SDL_RenderClear(Drawing::gRenderer);						 // removes everything from renderer
-		SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL); // Draws background to renderer
-		//**********************draw the objects here*******************
 		
-		obj.drawObjects();
-		base.displayBase(200, 200);
-		base.drawbase(Drawing::gRenderer, Drawing::ground);
+        SDL_RenderClear(Drawing::gRenderer);
+        // Draw based on the current state
+        switch (currentState)
+        {
+        case MENU:
+            // Draw your menu here
+			// SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
+            // obj.drawObjects();
+            SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
+            
+        
+            break;
+
+        case PLAY:
+            SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
+            obj.drawObjects();
+            base.displayBase(200, 200);
+            base.drawbase(Drawing::gRenderer, Drawing::ground);
+            break;
+        }
 
 
 		//****************************************************************
@@ -197,6 +233,27 @@ void Game::run()
 
 		SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
 	}
+
 }
 
+void Game::changeMusic(const std::string& musicPath)
+{
+    // Stop the currently playing music
+    Mix_HaltMusic();
+
+    // Free the memory used by the current music
+    
+
+    // Load the new music
+    Mix_Music *GameMusic = Mix_LoadMUS("Stereo Madness.mp3");
+    if (GameMusic == NULL)
+    {
+        printf("Unable to load new music: %s\n", Mix_GetError());
+    }
+    else
+    {
+        // Play the new music
+        Mix_PlayMusic(GameMusic, -1);
+    }
+}
 

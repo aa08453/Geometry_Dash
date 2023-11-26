@@ -1,5 +1,8 @@
+#ifndef DRAWING_HPP
+#define DRAWING_HPP
 #include <SDL.h>
-#pragma once
+#pragma 
+
 class Drawing
 {
 public:
@@ -11,3 +14,5 @@ public:
 
     //static SDL_Texture *obstacles;
 };
+
+#endif

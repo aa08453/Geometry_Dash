@@ -21,6 +21,8 @@ class Game
 
     // Current displayed texture
     SDL_Texture *gTexture = NULL;
+    SDL_Texture *mainMenuImage = NULL;
+
 
 public:
     bool init();
@@ -28,4 +30,18 @@ public:
     void close();
     SDL_Texture *loadTexture(std::string path);
     void run();
+    // void updateState();
+    void changeMusic(const std::string& musicPath);
+private:
+
+   //enum that contain the states of the game
+    enum GameState
+    {
+        MENU,
+        PLAY,
+        FINAL
+    };
+
+    GameState currentState;   //enum object
+
 };
