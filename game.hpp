@@ -35,6 +35,7 @@ public:
 private:
 
    //enum that contain the states of the game
+   //till now implemented initial and game states
     enum GameState
     {
         MENU,

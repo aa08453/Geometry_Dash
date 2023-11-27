@@ -70,16 +70,11 @@ void Objects::moveup(){
         if (obstacleRect.y - yjump == 290)
         {
             obstacleRect.y -= yjump;
-            cout<<obstacleRect.y<<endl;
-            
-             // this part for testing
         }
         else
         {
             obstacleRect.y = 290;
-            cout<<obstacleRect.y<<endl;
 
-            // cout<<sprites[i].moverRect.y<<endl;
         }
     
 }
@@ -89,15 +84,11 @@ void Objects::movedown(){
     if (obstacleRect.y + yjump == 385)
         {
             obstacleRect.y += yjump;
-            cout<<obstacleRect.y<<endl;
-
-             // this part for testing
+            
         }
     else
         {
             obstacleRect.y = 385;
-            cout<<obstacleRect.y<<endl;
-
-            // cout<<sprites[i].moverRect.y<<endl;
+            
         }
 }

@@ -21,6 +21,19 @@ int main(int argc, char *argv[]){
 
     game.run();
     game.close();
+    // const Uint8* SDL_GetKeyboardState(int *numkeys);
+    //  if( currentKeyStates[ SDL_SCANCODE_UP ] )
+    //             {
+    //                 currentTexture = &gUpTexture;
+    //             
+     int numKeys;
+    const Uint8 *keyboardState = SDL_GetKeyboardState(&numKeys);
+
+    // Check the state of the 'A' key (for example)
+    if (keyboardState[SDL_SCANCODE_UP]) {
+        // The 'A' key is pressed
+        cout<<"A is pressed\n";
+    }
 
     return 0;
 }

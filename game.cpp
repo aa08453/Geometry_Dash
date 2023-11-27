@@ -9,9 +9,9 @@ SDL_Texture *Drawing::ground = NULL;
 //SDL_Texture *Drawing::obstacles = NULL;
 bool Game::init()
 {
-	// Initialization flag
+	// Initialization 
+	
 	bool success = true;
-
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -176,7 +176,7 @@ void Game::run()
 				obj.createObject();
                 }
                 break;
-				// obj.createObject();
+				
 
 				
 
