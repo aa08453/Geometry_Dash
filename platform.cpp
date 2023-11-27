@@ -15,6 +15,3 @@ void platform::draw()
     if (moverRect.x < -2000)
         moverRect.x = 0;
 }
-
-
-

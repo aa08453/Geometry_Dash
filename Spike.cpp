@@ -16,8 +16,7 @@ void Spike::move()
 {
     if (moverRect.x < 0)
         moverRect.x = 1000;
-    moverRect.x -= 20;
-    
+    moverRect.x -= 20;  
 }
 
 
