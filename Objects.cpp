@@ -1,4 +1,5 @@
 #include "Objects.hpp"
+
 int Objects::a = 0;
 bool Objects::crash = false;
 int Objects::yjump=100;
@@ -57,12 +58,14 @@ void Objects::createObject( )
 
 bool Objects::collision(Obstacles* u, Sprite* S)
 {
-    int c = S->getMoverRect().x;
-    int b = S->getMoverRect().x + S->getMoverRect().w;
-    int a = u->getMoverRect().x;
-    int d = S->getMoverRect().y;
-    int e = u->getMoverRect().y;
-    return ((a <= b && a >= c) && (d >= e));
+    int Spike_front = u->getMoverRect().x; // spike_position
+    int Spike_back = u->getMoverRect().x + u->getMoverRect().w;
+    int Sprite_back = S->getMoverRect().x + S->getMoverRect().w;
+    int Sprite_front = S->getMoverRect().x; // sprite_position ~ sprite front point
+    int Sprite_height = S->getMoverRect().y; // sprite height
+    int Spike_height = u->getMoverRect().y; // spike height
+    return (((Spike_front <= Sprite_back && Spike_front >= Sprite_front) ||
+    (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
 }
 
 void Objects::moveup(){
