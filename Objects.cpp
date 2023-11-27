@@ -13,11 +13,14 @@ Objects::~Objects()
 
     delete S;
     S = nullptr;
+
+    delete base;
+    base = nullptr;
 }
 
 void Objects::drawObjects()
 {
-    // calling draw functions of all the objects here
+    base->draw();
     for (Obstacles *u : L)
     {
         u->draw();
@@ -25,11 +28,11 @@ void Objects::drawObjects()
 
         if (collision(u, S))
         {
-            // std::cout << "Hello" << std::endl;
             crash = true;
             S->destroy();
         }
     }
+    
     if (!crash)
     {
         S->draw();
@@ -40,15 +43,14 @@ void Objects::drawObjects()
 // creates new objects
 void Objects::createObject( )
 {
-    //std::cout << "Mouse clicked at: " << x << " -- " << y << std::endl;
     if (a < 1)
     {
-        
+        /* could make it input x values (hardcoding the game) for spikes and destroy each spike as it
+            goes out of the screen */
         L.emplace_back(new Spike(750));
         L.emplace_back(new Spike(900));
         S = new Sprite();
-        /* could make it input x values (hardcoding the game) for spikes and destroy each spike as it
-            goes out of the screen */ 
+        base = new platform();
     }
     a++;
 }
@@ -68,27 +70,17 @@ void Objects::moveup(){
      SDL_Rect& obstacleRect = S->getMoverRect();
      
         if (obstacleRect.y - yjump == 290)
-        {
             obstacleRect.y -= yjump;
-        }
-        else
-        {
-            obstacleRect.y = 290;
 
-        }
-    
+        else
+            obstacleRect.y = 290;
 }
 
 void Objects::movedown(){
     SDL_Rect& obstacleRect = S->getMoverRect();
     if (obstacleRect.y + yjump == 385)
-        {
-            obstacleRect.y += yjump;
-            
-        }
+        obstacleRect.y += yjump;
+
     else
-        {
-            obstacleRect.y = 385;
-            
-        }
+        obstacleRect.y = 385;
 }

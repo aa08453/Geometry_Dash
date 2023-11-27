@@ -2,6 +2,7 @@
 #include "Sprite.hpp"
 #include "Spike.hpp"
 #include "Obstacles.hpp"
+#include "platform.hpp"
 #include <vector>
 #include <list>
 #include <cstdlib>
@@ -16,15 +17,13 @@ public:
     void createObject( );
     void moveup();
     void movedown();
-    
-    // created destructor which deletes all dynamic objects
+    Objects() = default;
     ~Objects();
-protected:
-    SDL_Rect srcRect, moverRect;
 
 private:
     vector<Obstacles *> L;
-    Sprite *S; // for the sprite
+    Sprite *S{nullptr}; // for the sprite
+    platform* base{nullptr};
     static int a;
     static bool crash;
     bool collision(Obstacles *u, Sprite *S);
