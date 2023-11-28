@@ -25,6 +25,7 @@ private:
     Sprite *S{nullptr}; // for the sprite
     platform* base{nullptr};
     static int a;
+    static int velocity;
     static bool crash;
     bool collision(Obstacles *u, Sprite *S);
     static int yjump;
