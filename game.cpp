@@ -1,6 +1,5 @@
 #include "game.hpp"
 
-
 SDL_Renderer *Drawing::gRenderer = NULL;
 SDL_Texture *Drawing::assets = NULL;
 SDL_Texture *Drawing::ground = NULL;
@@ -77,7 +76,6 @@ bool Game::loadMedia()
 	// mainMenuImage= loadTexture("Menu.png");
 	mainMenuImage = loadTexture("./Menu.png");
 
-	
 	//Drawing::obstacles = loadTexture("FakeSpike03.png");
 	Drawing::ground = loadTexture("platform.png");
 	if (Drawing::assets == NULL || gTexture == NULL  || Drawing::ground == NULL)
@@ -152,7 +150,6 @@ void Game::run()
 	bool quit = false;
 	SDL_Event e;
 	Objects obj;
-	platform base;
 
 	currentState=MENU;
 	while (!quit)
@@ -176,10 +173,6 @@ void Game::run()
 				obj.createObject();
                 }
                 break;
-				
-
-				
-
 
             case PLAY:
                 
@@ -198,14 +191,10 @@ void Game::run()
 					// 	}
                     // }
 
-			
-
                 break;
             }
-
 		}
 
-		
         SDL_RenderClear(Drawing::gRenderer);
         // Draw based on the current state
         switch (currentState)
@@ -216,17 +205,13 @@ void Game::run()
             // obj.drawObjects();
             SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
             
-        
             break;
 
         case PLAY:
             SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
             obj.drawObjects();
-            base.displayBase(200, 200);
-            base.drawbase(Drawing::gRenderer, Drawing::ground);
             break;
         }
-
 
 		//****************************************************************
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer

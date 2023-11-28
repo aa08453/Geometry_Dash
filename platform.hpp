@@ -1,15 +1,18 @@
+#pragma once
 #include<SDL.h>
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include "drawing.hpp"
 
+using namespace std;
 class platform
 {
-private:
-    SDL_Rect srcRect, moverRect;
-public:
-    platform(/* args */);
-    ~platform();
-    void drawbase(SDL_Renderer* gRenderer, SDL_Texture* platform);
-
-    void displayBase(int x, int y);
+    private:
+        SDL_Rect srcRect, moverRect;
+    public:
+        platform();
+        void draw();
 };
 
 

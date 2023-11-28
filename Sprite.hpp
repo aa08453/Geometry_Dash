@@ -3,11 +3,15 @@
 #include "Obstacles.hpp"
 #include <iostream>
 
-class Sprite : public Obstacles
+class Sprite
 {
-public:
-    void move();
-    Sprite();
-    void destroy();
-    // may add other overloaded constructors here...
+    public:
+        Sprite();
+        void move();
+        void draw();
+        void destroy();
+        SDL_Rect &getMoverRect();
+
+    private:
+        SDL_Rect srcRect, moverRect;
 };

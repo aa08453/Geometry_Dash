@@ -12,37 +12,34 @@
 
 class Game
 {
-    // Screen dimension constants
-    const int SCREEN_WIDTH = 1000;
-    const int SCREEN_HEIGHT = 600;
+    public:
+        bool init();
+        bool loadMedia();
+        void close();
+        SDL_Texture *loadTexture(std::string path);
+        void run();
+        // void updateState();
+        void changeMusic(const std::string& musicPath);
 
-    // The window we'll be rendering to
-    SDL_Window *gWindow = NULL;
+    private:
+        // Screen dimension constants
+        const int SCREEN_WIDTH = 1000;
+        const int SCREEN_HEIGHT = 600;
 
-    // Current displayed texture
-    SDL_Texture *gTexture = NULL;
-    SDL_Texture *mainMenuImage = NULL;
+        // The window we'll be rendering to
+        SDL_Window *gWindow = NULL;
 
+        // Current displayed texture
+        SDL_Texture *gTexture = NULL;
+        SDL_Texture *mainMenuImage = NULL;
+        // enum that contain the states of the game
+        // till now implemented initial and game states
+        enum GameState
+        {
+            MENU,
+            PLAY,
+            FINAL
+        };
 
-public:
-    bool init();
-    bool loadMedia();
-    void close();
-    SDL_Texture *loadTexture(std::string path);
-    void run();
-    // void updateState();
-    void changeMusic(const std::string& musicPath);
-private:
-
-   //enum that contain the states of the game
-   //till now implemented initial and game states
-    enum GameState
-    {
-        MENU,
-        PLAY,
-        FINAL
-    };
-
-    GameState currentState;   //enum object
-
+        GameState currentState;   //enum object
 };

@@ -1,4 +1,5 @@
 #include "Objects.hpp"
+
 int Objects::a = 0;
 bool Objects::crash = false;
 int Objects::yjump=100;
@@ -14,11 +15,14 @@ Objects::~Objects()
 
     delete S;
     S = nullptr;
+
+    delete base;
+    base = nullptr;
 }
 
 void Objects::drawObjects()
 {
-    // calling draw functions of all the objects here
+    base->draw();
     for (Obstacles *u : L)
     {
         u->draw();
@@ -26,11 +30,11 @@ void Objects::drawObjects()
 
         if (collision(u, S))
         {
-            // std::cout << "Hello" << std::endl;
             crash = true;
             S->destroy();
         }
     }
+    
     if (!crash)
     {
         S->draw();
@@ -41,27 +45,28 @@ void Objects::drawObjects()
 // creates new objects
 void Objects::createObject( )
 {
-    //std::cout << "Mouse clicked at: " << x << " -- " << y << std::endl;
     if (a < 1)
     {
-        
+        /* could make it input x values (hardcoding the game) for spikes and destroy each spike as it
+            goes out of the screen */
         L.emplace_back(new Spike(750));
         L.emplace_back(new Spike(900));
         S = new Sprite();
-        /* could make it input x values (hardcoding the game) for spikes and destroy each spike as it
-            goes out of the screen */ 
+        base = new platform();
     }
     a++;
 }
 
 bool Objects::collision(Obstacles* u, Sprite* S)
 {
-    int c = S->getMoverRect().x;
-    int b = S->getMoverRect().x + S->getMoverRect().w;
-    int a = u->getMoverRect().x;
-    int d = S->getMoverRect().y;
-    int e = u->getMoverRect().y;
-    return ((a <= b && a >= c) && (d >= e));
+    int Spike_front = u->getMoverRect().x; // spike_position
+    int Spike_back = u->getMoverRect().x + u->getMoverRect().w;
+    int Sprite_back = S->getMoverRect().x + S->getMoverRect().w;
+    int Sprite_front = S->getMoverRect().x; // sprite_position ~ sprite front point
+    int Sprite_height = S->getMoverRect().y; // sprite height
+    int Spike_height = u->getMoverRect().y; // spike height
+    return (((Spike_front <= Sprite_back && Spike_front >= Sprite_front) ||
+    (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
 }
 
 void Objects::moveup(){
@@ -100,3 +105,19 @@ void Objects::moveup(){
             
 //         }
 // }
+     
+        if (obstacleRect.y - yjump == 290)
+            obstacleRect.y -= yjump;
+
+        else
+            obstacleRect.y = 290;
+}
+
+void Objects::movedown(){
+    SDL_Rect& obstacleRect = S->getMoverRect();
+    if (obstacleRect.y + yjump == 385)
+        obstacleRect.y += yjump;
+
+    else
+        obstacleRect.y = 385;
+}
