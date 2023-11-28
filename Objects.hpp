@@ -26,6 +26,7 @@ private:
     vector<Obstacles *> L;
     Sprite *S; // for the sprite
     static int a;
+    static int velocity;
     static bool crash;
     bool collision(Obstacles *u, Sprite *S);
     static int yjump;

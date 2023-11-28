@@ -2,6 +2,7 @@
 int Objects::a = 0;
 bool Objects::crash = false;
 int Objects::yjump=100;
+int Objects::velocity=0;
 
 Objects::~Objects()
 {
@@ -66,29 +67,36 @@ bool Objects::collision(Obstacles* u, Sprite* S)
 void Objects::moveup(){
     
      SDL_Rect& obstacleRect = S->getMoverRect();
-     
-        if (obstacleRect.y - yjump == 290)
-        {
-            obstacleRect.y -= yjump;
-        }
-        else
-        {
-            obstacleRect.y = 290;
-
-        }
     
+    const float gravity = 9.8; // Adjust this value based on your requirements
+    float jumpVelocity = -10.0; // Adjust this value based on your requirements
+    cout<<obstacleRect.y<<endl;
+    // Only apply initial velocity if the sprite is on the ground (you might need a flag for this)
+    if (obstacleRect.y == 385)
+    {
+        velocity = jumpVelocity;
+    }
+
+    obstacleRect.y += velocity;
+    velocity += gravity;
+
+    // Limit the downward velocity to prevent the sprite from falling too fast
+    if (velocity > 10.0)
+    {
+        velocity = 10.0;
+    }
 }
 
-void Objects::movedown(){
-    SDL_Rect& obstacleRect = S->getMoverRect();
-    if (obstacleRect.y + yjump == 385)
-        {
-            obstacleRect.y += yjump;
+// void Objects::movedown(){
+//     SDL_Rect& obstacleRect = S->getMoverRect();
+//     if (obstacleRect.y + yjump == 385)
+//         {
+//             obstacleRect.y += yjump;
             
-        }
-    else
-        {
-            obstacleRect.y = 385;
+//         }
+//     else
+//         {
+//             obstacleRect.y = 385;
             
-        }
-}
+//         }
+// }

@@ -183,20 +183,20 @@ void Game::run()
 
             case PLAY:
                 
-			    if (e.type == SDL_KEYDOWN)
-                    {
+			   
+                    
 						if (e.key.keysym.sym == SDLK_UP)
 						{
 							obj.moveup();
 						}
-					}
-				else if (e.type == SDL_KEYUP)
-					{
-						if (e.key.keysym.sym == SDLK_UP)
-						{
-							obj.movedown();
-						}
-                    }
+					//
+				// else if (e.type == SDL_KEYUP)
+					// {
+					// 	if (e.key.keysym.sym == SDLK_UP)
+					// 	{
+					// 		obj.movedown();
+					// 	}
+                    // }
 
 			
 
@@ -240,10 +240,6 @@ void Game::changeMusic(const std::string& musicPath)
 {
     // Stop the currently playing music
     Mix_HaltMusic();
-
-    // Free the memory used by the current music
-    
-
     // Load the new music
     Mix_Music *GameMusic = Mix_LoadMUS("Stereo Madness.mp3");
     if (GameMusic == NULL)
@@ -252,7 +248,7 @@ void Game::changeMusic(const std::string& musicPath)
     }
     else
     {
-        // Play the new music
+        // P
         Mix_PlayMusic(GameMusic, -1);
     }
 }
