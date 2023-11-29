@@ -7,6 +7,7 @@ class Spike : public Obstacles
 {
 public:
     void move();
+    bool delete_spike();
     Spike();
     Spike(int x);
     // may add other overloaded constructors here...

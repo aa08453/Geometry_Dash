@@ -2,7 +2,7 @@
 
 int Objects::a = 0;
 bool Objects::crash = false;
-int Objects::yjump=100;
+int Objects::yjump = 100;
 
 Objects::~Objects()
 {
@@ -22,8 +22,9 @@ Objects::~Objects()
 void Objects::drawObjects()
 {
     base->draw();
-    for (Obstacles *u : L)
+    for (auto i = L.begin(); i != L.end();)
     {
+        Obstacles *u = *i;
         u->draw();
         u->move();
 
@@ -32,17 +33,27 @@ void Objects::drawObjects()
             crash = true;
             S->destroy();
         }
+
+        Spike *sp = dynamic_cast<Spike *>(u);
+        if (sp->delete_spike())
+        {
+            delete u;
+            u = nullptr;
+            i = L.erase(i);
+        }
+        else
+            ++i;
     }
-    
+
     if (!crash)
     {
         S->draw();
-        S->move(); 
+        S->move();
     }
 }
 
 // creates new objects
-void Objects::createObject( )
+void Objects::createObject()
 {
     if (a < 1)
     {
@@ -56,14 +67,14 @@ void Objects::createObject( )
     a++;
 }
 
-bool Objects::collision(Obstacles* u, Sprite* S)
+bool Objects::collision(Obstacles *u, Sprite *S)
 {
-    int Spike_front = u->getMoverRect().x; // spike_position
+    int Spike_front = u->getMoverRect().x;
     int Spike_back = u->getMoverRect().x + u->getMoverRect().w;
+    int Sprite_front = S->getMoverRect().x;
     int Sprite_back = S->getMoverRect().x + S->getMoverRect().w;
-    int Sprite_front = S->getMoverRect().x; // sprite_position ~ sprite front point
-    int Sprite_height = S->getMoverRect().y; // sprite height
-    int Spike_height = u->getMoverRect().y; // spike height
+    int Sprite_height = S->getMoverRect().y;
+    int Spike_height = u->getMoverRect().y;
     return (((Spike_front <= Sprite_back && Spike_front >= Sprite_front) ||
     (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
 }

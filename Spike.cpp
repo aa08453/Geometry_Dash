@@ -19,4 +19,7 @@ void Spike::move()
     moverRect.x -= 20;  
 }
 
-
+bool Spike::delete_spike()
+{
+    return (moverRect.x <= 0);
+}
