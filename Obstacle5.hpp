@@ -1,12 +1,12 @@
-//Double Spike
+//Purple base with hanging
 
 #include "drawing.hpp"
 #include "Obstacles.hpp"
 
-class Obstacle2 : public Obstacles
+class Obstacle5 : public Obstacles
 {
 public:
-    Obstacle2();
+    Obstacle5();
     void move();
     
 };

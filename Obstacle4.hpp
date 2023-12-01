@@ -1,12 +1,12 @@
-//Double Spike
+//Purple rectangles with spikes
 
 #include "drawing.hpp"
 #include "Obstacles.hpp"
 
-class Obstacle2 : public Obstacles
+class Obstacle4 : public Obstacles
 {
 public:
-    Obstacle2();
+    Obstacle4();
     void move();
     
 };

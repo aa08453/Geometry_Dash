@@ -1,11 +1,12 @@
+//Double Spike
+
 #include "Obstacle2.hpp"
 #include <iostream>
 
 Obstacle2::Obstacle2()
 {
-    std::cout << "hello" << std::endl;
     srcRect = {166, 301, 118, 59};
-    moverRect = {1000, 385, 59, 35};
+    moverRect = {1000, 385, 65, 35};
 }
 
 

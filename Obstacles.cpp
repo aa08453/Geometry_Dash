@@ -17,5 +17,5 @@ SDL_Rect& Obstacles::getMoverRect()
 
 bool Obstacles::delete_obstacle()
 {
-    return (moverRect.x <= 0);
+    return (moverRect.x <= -moverRect.w);
 }

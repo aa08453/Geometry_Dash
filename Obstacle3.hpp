@@ -1,12 +1,12 @@
-//Double Spike
+//Triple Spike
 
 #include "drawing.hpp"
 #include "Obstacles.hpp"
 
-class Obstacle2 : public Obstacles
+class Obstacle3 : public Obstacles
 {
 public:
-    Obstacle2();
+    Obstacle3();
     void move();
     
 };
