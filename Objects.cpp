@@ -23,6 +23,7 @@ Objects::~Objects()
 void Objects::drawObjects()
 {
     base->draw();
+    //X->draw();
     for (auto i = L.begin(); i != L.end();)
     {
         Obstacles *u = *i;
@@ -35,8 +36,8 @@ void Objects::drawObjects()
             S->destroy();
         }
 
-        Spike *sp = dynamic_cast<Spike *>(u);
-        if (sp->delete_spike())
+        //Spike *sp = dynamic_cast<Spike *>(u);
+        if (u->delete_obstacle())
         {
             delete u;
             u = nullptr;
@@ -60,8 +61,9 @@ void Objects::createObject()
     {
         /* could make it input x values (hardcoding the game) for spikes and destroy each spike as it
             goes out of the screen */
-        L.emplace_back(new Spike(750));
-        L.emplace_back(new Spike(900));
+        L.emplace_back(new Spike());
+        L.emplace_back(new Obstacle2());
+        //X = new Obstacle2();
         S = new Sprite();
         base = new platform();
     }
@@ -117,12 +119,12 @@ void Objects::moveup(){
 //         }
 // }
      
-        if (obstacleRect.y - yjump == 290)
-            obstacleRect.y -= yjump;
+        // if (obstacleRect.y - yjump == 290)
+        //     obstacleRect.y -= yjump;
 
-        else
-            obstacleRect.y = 290;
-}
+        // else
+        //     obstacleRect.y = 290;
+
 
 void Objects::movedown(){
     SDL_Rect& obstacleRect = S->getMoverRect();

@@ -1,4 +1,5 @@
 #include "drawing.hpp"
+#include <iostream>
 #pragma once
 class Obstacles
 {
@@ -12,4 +13,5 @@ class Obstacles
         void draw();
         virtual void move();
         SDL_Rect &getMoverRect();
+        bool delete_obstacle();
 };

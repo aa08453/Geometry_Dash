@@ -2,14 +2,8 @@
 
 Spike::Spike()
 {
-    srcRect = {97, 72, 59, 59};
-    moverRect = {500, 385, 35, 35};
-}
-
-Spike::Spike(int x)
-{
-    srcRect = {97, 72, 59, 59};
-    moverRect = {x, 385, 35, 35};
+    srcRect = {144, 113, 59, 59};
+    moverRect = {1000, 385, 35, 35};
 }
 
 void Spike::move()
@@ -19,7 +13,4 @@ void Spike::move()
     moverRect.x -= 20;  
 }
 
-bool Spike::delete_spike()
-{
-    return (moverRect.x <= 0);
-}
+
