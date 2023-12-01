@@ -70,7 +70,7 @@ bool Game::loadMedia()
 
 	bool success = true;
     
-	Drawing::assets = loadTexture("assets.png");
+	Drawing::assets = loadTexture("new_asset.png");
 	gTexture = loadTexture("new_bg.png");
 
 	// mainMenuImage= loadTexture("Menu.png");

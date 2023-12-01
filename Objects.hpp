@@ -1,6 +1,8 @@
+#include <ctime>
 #include <SDL.h>
 #include "Sprite.hpp"
 #include "Spike.hpp"
+#include "Obstacle2.hpp"
 #include "Obstacles.hpp"
 #include "platform.hpp"
 #include <vector>
@@ -22,6 +24,7 @@ public:
 
 private:
     vector<Obstacles *> L;
+    //Obstacle2 *X{nullptr};
     Sprite *S{nullptr}; // for the sprite
     platform* base{nullptr};
     static int a;
