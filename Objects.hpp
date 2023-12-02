@@ -37,6 +37,7 @@ class Objects
         static float velocity;
         static float jumpVelocity;
         static float gravity;
+        static int speed;
         bool collision(Obstacles* u, Sprite* S) const;
         Obstacles* Prev{nullptr};   
 };

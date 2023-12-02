@@ -208,8 +208,7 @@ void Game::run()
             obj.drawObjects();
 			obj.update(e);
 			// obj.moveup(e); //this function is handling the input movement 
-		
-            break;
+		    break;
         }
 
 		//****************************************************************
