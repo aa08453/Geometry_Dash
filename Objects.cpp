@@ -1,9 +1,10 @@
 #include "Objects.hpp"
 
 bool Objects::crash = false;
-int Objects::velocity=-10;
-float Objects::jumpVelocity=15;
-float Objects::gravity=1;
+int Objects::velocity=0;
+int Objects::speed=-1;
+float Objects::jumpVelocity=20;
+float Objects::gravity=1.1;
 bool Objects:: flag=false;
 
 Objects::~Objects()
@@ -14,9 +15,9 @@ Objects::~Objects()
         u = nullptr;
     }
 
+
     delete S;
     S = nullptr;
-
     delete base;
     base = nullptr;
 }
@@ -105,8 +106,6 @@ void Objects::update(SDL_Event& e)
     if(flag==true){
     SDL_Rect& obstacleRect = S->getMoverRect();
     
-    //applying gravity of the motion
-    // std::cout << "Event Type: " << e.type << ", Key Symbol: " << e.key.keysym.sym << std::endl;
     velocity+=gravity;
 
     obstacleRect.y+=velocity;
