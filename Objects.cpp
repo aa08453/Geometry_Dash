@@ -1,6 +1,5 @@
 #include "Objects.hpp"
 
-
 bool Objects::crash = false;
 int Objects::velocity=-10;
 float Objects::jumpVelocity=15;
@@ -94,46 +93,40 @@ bool Objects::collision(Obstacles *u, Sprite *S) const
     (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
 }
 
-void Objects::update(SDL_Event &e)
+void Objects::movement(bool flag)
 {
-    // Call the moveup function to handle jumping
-    if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && !flag)
+    if (!flag)
     {
-        if (!flag)
-        {
-            velocity = -jumpVelocity;
-            flag = true;
-        }
+        velocity = -jumpVelocity;
+        flag = true;
     }
 
-    if (flag == true)
+    SDL_Rect &obstacleRect = S->getMoverRect();
+
+    // applying gravity of the motion
+    //  std::cout << "Event Type: " << e.type << ", Key Symbol: " << e.key.keysym.sym << std::endl;
+    velocity += gravity;
+
+    obstacleRect.y += velocity;
+
+    // check if the object is on the platform
+
+    if (obstacleRect.y >= 385)
     {
-        SDL_Rect &obstacleRect = S->getMoverRect();
-
-        // applying gravity of the motion
-        //  std::cout << "Event Type: " << e.type << ", Key Symbol: " << e.key.keysym.sym << std::endl;
-        velocity += gravity;
-
-        obstacleRect.y += velocity;
-
-        // check if the object is on the platform
-
-        if (obstacleRect.y >= 385)
-        {
-            obstacleRect.y = 385;
-            velocity = 0;
-            flag = false;
-        }
+        obstacleRect.y = 385;
+        velocity = 0;
+        flag = false;
     }
 }
-    bool Objects::addObstacle() const
-    {
-        if (Prev)
-            return (Prev->getMoverRect().x <= S->getMoverRect().x + S->getMoverRect().w);
-        return true;
-    }
 
-    bool Objects::EndGame() const
-    {
-        return crash;
-    }
+bool Objects::addObstacle() const
+{
+    if (Prev)
+        return (Prev->getMoverRect().x <= S->getMoverRect().x + S->getMoverRect().w);
+    return true;
+}
+
+bool Objects::EndGame() const
+{
+    return crash;
+}

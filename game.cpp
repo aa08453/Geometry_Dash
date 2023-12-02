@@ -150,6 +150,7 @@ void Game::run()
 	SDL_Event e;
 	Objects obj;
 	currentState=MENU;
+	bool flag;
 	while (!quit)
 	{
 		// Handle events on queue
@@ -168,45 +169,42 @@ void Game::run()
 						currentState = PLAY; // Change to the play state when the Enter key is pressed
 						changeMusic("NewMusic.mp3");
 						obj.createEssentials();
-						
 					}
 					break;
 
-            case PLAY:
-            
-				obj.update(e);
-                break;
+				case PLAY:
+					if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && !flag)
+						obj.movement(flag);
+					break;
             }
 
-		if (obj.addObstacle())
-			obj.createObstacles();
+			if (obj.addObstacle())
+				obj.createObstacles();
 
-		SDL_RenderClear(Drawing::gRenderer);
+			SDL_RenderClear(Drawing::gRenderer);
 
-        // Draw based on the current state
-        switch (currentState)
-        {
-			case MENU:
-				SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
+			// Draw based on the current state
+			switch (currentState)
+			{
+				case MENU:
+					SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
+					break;
+
+				case PLAY:
+					SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
+					obj.drawObjects();
+					obj.movement(flag);
+
 				break;
+			}
 
-        case PLAY:
-            SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
-            obj.drawObjects();
-			obj.update(e);
-			// obj.moveup(e); //this function is handling the input movement 
-		
-            break;
-        }
+			//****************************************************************
+			
+			SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
 
-		//****************************************************************
-		
-		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
-
-		SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
+			SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
+		}
 	}
-	
-
 }
 
 void Game::changeMusic(const std::string& musicPath)
@@ -220,6 +218,3 @@ void Game::changeMusic(const std::string& musicPath)
     else
         Mix_PlayMusic(GameMusic, -1);
 }
-
-
-
