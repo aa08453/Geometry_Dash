@@ -1,12 +1,9 @@
-//#include <SDL.h>
-//#include "Objects.hpp"
 #include "drawing.hpp"
 #include "Obstacles.hpp"
 
 class Spike : public Obstacles
 {
 public:
+    Spike(int x = 1000, int w = 35);
     void move();
-    Spike();
-    // may add other overloaded constructors here...
 };

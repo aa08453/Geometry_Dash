@@ -3,15 +3,13 @@
 #pragma once
 class Obstacles
 {
-    private:
-
     protected:
         int frame = 0;
         SDL_Rect srcRect, moverRect;
 
     public:
         void draw();
-        virtual void move();
+        virtual void move() = 0;
         SDL_Rect &getMoverRect();
         bool delete_obstacle();
 };

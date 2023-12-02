@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include "Sprite.hpp"
 #include "Spike.hpp"
-#include "Obstacle2.hpp"
+#include "DoubleSpike.hpp"
 #include "Obstacles.hpp"
 #include "platform.hpp"
 #include <vector>
@@ -15,21 +15,23 @@ using namespace std;
 class Objects
 {
 public:
-    void drawObjects();
-    void createObject( );
-    void moveup();
-    void movedown();
     Objects() = default;
     ~Objects();
+    void drawObjects();
+    void createObstacles( );
+    void createEssentials();
+    void moveup();
+    void movedown();
+    
 
 private:
-    vector<Obstacles *> L;
-    //Obstacle2 *X{nullptr};
-    Sprite *S{nullptr}; // for the sprite
+    vector <Obstacles*> L;
+    Sprite* S{nullptr};
     platform* base{nullptr};
     static int a;
     static int velocity;
     static bool crash;
-    bool collision(Obstacles *u, Sprite *S);
     static int yjump;
+    bool collision(Obstacles* u, Sprite* S);
+    
 };

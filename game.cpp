@@ -150,8 +150,8 @@ void Game::run()
 	bool quit = false;
 	SDL_Event e;
 	Objects obj;
-
 	currentState=MENU;
+	
 	while (!quit)
 	{
 		// Handle events on queue
@@ -159,58 +159,41 @@ void Game::run()
 		{
 			// User requests quit
 			if (e.type == SDL_QUIT)
-			{
 				quit = true;
-			}
 
 			switch (currentState)
             {
-            case MENU:
-                if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
-                {
-                currentState = PLAY; // Change to the play state when the Enter key is pressed
-				changeMusic("NewMusic.mp3");
-				obj.createObject();
-                }
-                break;
+				case MENU:
+					if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
+					{
+						currentState = PLAY; // Change to the play state when the Enter key is pressed
+						changeMusic("NewMusic.mp3");
+						obj.createEssentials();
+						obj.createObstacles();
+					}
+					break;
 
-            case PLAY:
-                
-			   
-                    
-						if (e.key.keysym.sym == SDLK_UP)
-						{
-							obj.moveup();
-						}
-					//
-				// else if (e.type == SDL_KEYUP)
-					// {
-					// 	if (e.key.keysym.sym == SDLK_UP)
-					// 	{
-					// 		obj.movedown();
-					// 	}
-                    // }
+				case PLAY:
+					if (e.key.keysym.sym == SDLK_UP)
+						obj.moveup();
 
-                break;
+					break;
             }
 		}
 
         SDL_RenderClear(Drawing::gRenderer);
+
         // Draw based on the current state
         switch (currentState)
         {
-        case MENU:
-            // Draw your menu here
-			// SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
-            // obj.drawObjects();
-            SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
-            
-            break;
+			case MENU:
+				SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
+				break;
 
-        case PLAY:
-            SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
-            obj.drawObjects();
-            break;
+			case PLAY:
+				SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
+				obj.drawObjects();
+				break;
         }
 
 		//****************************************************************
@@ -228,13 +211,8 @@ void Game::changeMusic(const std::string& musicPath)
     // Load the new music
     Mix_Music *GameMusic = Mix_LoadMUS("Stereo Madness.mp3");
     if (GameMusic == NULL)
-    {
         printf("Unable to load new music: %s\n", Mix_GetError());
-    }
     else
-    {
-        // P
         Mix_PlayMusic(GameMusic, -1);
-    }
 }
 
