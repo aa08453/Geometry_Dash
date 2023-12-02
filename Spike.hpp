@@ -3,7 +3,7 @@
 
 class Spike : public Obstacles
 {
-public:
-    Spike(int x = 1000, int w = 35);
-    void move();
+    public:
+        Spike(int x = 1000, int w = 35);
+
 };

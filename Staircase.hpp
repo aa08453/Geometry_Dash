@@ -3,10 +3,8 @@
 #include "drawing.hpp"
 #include "Obstacles.hpp"
 
-class Obstacle4 : public Obstacles
+class Staircase : public Obstacles
 {
-public:
-    Obstacle4();
-    void move();
-    
+    public:
+        Staircase();
 };

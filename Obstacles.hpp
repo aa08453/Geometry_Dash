@@ -9,7 +9,7 @@ class Obstacles
 
     public:
         void draw();
-        virtual void move() = 0;
+        void move();
         SDL_Rect &getMoverRect();
         bool delete_obstacle();
 };

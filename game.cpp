@@ -4,9 +4,7 @@
 SDL_Renderer *Drawing::gRenderer = NULL;
 SDL_Texture *Drawing::assets = NULL;
 SDL_Texture *Drawing::ground = NULL;
-	// currentState=MENU;
 
-//SDL_Texture *Drawing::obstacles = NULL;
 bool Game::init()
 {
 	// Initialization 
@@ -152,17 +150,12 @@ void Game::run()
 	SDL_Event e;
 	Objects obj;
 	currentState=MENU;
-	
 	while (!quit)
 	{
 		// Handle events on queue
-		
-		
+
 		while (SDL_PollEvent(&e) != 0)
 		{
-			// User requests quit
-			// int x = rand()%4;
-			// std::cout << x << std::endl;
 			if (e.type == SDL_QUIT)
 				quit = true;
 
@@ -174,7 +167,7 @@ void Game::run()
 						currentState = PLAY; // Change to the play state when the Enter key is pressed
 						changeMusic("NewMusic.mp3");
 						obj.createEssentials();
-						obj.createObstacles();
+						
 					}
 					break;
 
@@ -186,7 +179,10 @@ void Game::run()
             }
 		}
 
-        SDL_RenderClear(Drawing::gRenderer);
+		if (obj.addObstacle())
+			obj.createObstacles();
+
+		SDL_RenderClear(Drawing::gRenderer);
 
         // Draw based on the current state
         switch (currentState)
@@ -203,7 +199,7 @@ void Game::run()
 
 		//****************************************************************
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
-		
+
 		SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
 	}
 	

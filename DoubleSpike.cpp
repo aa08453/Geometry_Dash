@@ -7,8 +7,4 @@ DoubleSpike::DoubleSpike(int x, int w)
     moverRect = {x, 385, w, 35};
 }
 
-void DoubleSpike::move()
-{
-    moverRect.x -= 20;  
-}
 
