@@ -1,4 +1,5 @@
 #include "Objects.hpp"
+#include <iostream>
 
 bool Objects::crash = false;
 int Objects::velocity=0;
@@ -37,6 +38,7 @@ void Objects::drawObjects()
     {
         crash = true;
         S->destroy();
+
     }
 
         if (u->delete_obstacle())
@@ -59,8 +61,12 @@ void Objects::drawObjects()
 // creates new objects
 void Objects::createObstacles( )
 {
-    int z = rand() % 5;
+    // int z = rand() % 6;
+    // std::cout << z << "\n";
 
+    int z = 4;
+
+    //int z = 5;
     if (z == 0)
         L.emplace_back(new Spike());
     else if (z == 1)
@@ -69,9 +75,19 @@ void Objects::createObstacles( )
         L.emplace_back(new TripleSpike());
     else if (z == 3)
         L.emplace_back(new Staircase());
-    else
+    else if (z == 4)
+    {
         L.emplace_back(new HangingBase());
-    
+        L.emplace_back(new HangingBase2());
+    }
+    else
+    {
+        L.emplace_back(new stairs1());
+        L.emplace_back(new stairs2());
+        L.emplace_back(new stairs3());
+        L.emplace_back(new stairs4());
+        L.emplace_back(new stairs5());
+    }
     Prev = L.back();
 }
 

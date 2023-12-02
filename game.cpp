@@ -155,6 +155,7 @@ void Game::run()
 	while (!quit)
 	{
 		// Handle events on queue
+		
 		while (SDL_PollEvent(&e) != 0)
 		{
 			// User requests quit
@@ -172,11 +173,13 @@ void Game::run()
                 currentState = PLAY; // Change to the play state when the Enter key is pressed
 				changeMusic("NewMusic.mp3");
 				obj.createEssentials();
+				obj.createObstacles();
+				
                 }
                 break;
 
             case PLAY:
-            
+				
 				obj.update(e);
 				
 				if (obj.addObstacle())
@@ -195,6 +198,8 @@ void Game::run()
         
         
         SDL_RenderClear(Drawing::gRenderer);
+		
+		
         // Draw based on the current state
         switch (currentState)
         {
@@ -205,7 +210,13 @@ void Game::run()
 
         case PLAY:
             SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
-            obj.drawObjects();
+			// if(obj.addObstacle())
+			// {
+			// 	
+				
+			// }
+			
+			obj.drawObjects();
 			obj.update(e);
 			// obj.moveup(e); //this function is handling the input movement 
 		    break;
