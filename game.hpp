@@ -20,6 +20,7 @@ class Game
         void run();
         // void updateState();
         void changeMusic(const std::string& musicPath);
+        
 
     private:
         // Screen dimension constants
@@ -28,6 +29,7 @@ class Game
 
         // The window we'll be rendering to
         SDL_Window *gWindow = NULL;
+        Objects obj;
 
         // Current displayed texture
         SDL_Texture *gTexture = NULL;

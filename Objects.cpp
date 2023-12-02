@@ -2,9 +2,10 @@
 
 
 bool Objects::crash = false;
-int Objects::yjump=100;
-int Objects::velocity=0;
-
+int Objects::velocity=-10;
+float Objects::jumpVelocity=15;
+float Objects::gravity=1;
+bool Objects:: flag=false;
 
 Objects::~Objects()
 {
@@ -93,48 +94,46 @@ bool Objects::collision(Obstacles *u, Sprite *S) const
     (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
 }
 
-void Objects::moveup(){
-    
-    SDL_Rect& obstacleRect = S->getMoverRect();
-    
-    const float gravity = 9.8; // Adjust this value based on your requirements
-    float jumpVelocity = -10.0; // Adjust this value based on your requirements
-    cout<<obstacleRect.y<<endl;
-    // Only apply initial velocity if the sprite is on the ground (you might need a flag for this)
-    if (obstacleRect.y == 385)
+void Objects::update(SDL_Event &e)
+{
+    // Call the moveup function to handle jumping
+    if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && !flag)
     {
-        velocity = jumpVelocity;
+        if (!flag)
+        {
+            velocity = -jumpVelocity;
+            flag = true;
+        }
     }
 
-    obstacleRect.y += velocity;
-    velocity += gravity;
-
-    if (velocity > 10.0)
+    if (flag == true)
     {
-        velocity = 10.0;
+        SDL_Rect &obstacleRect = S->getMoverRect();
+
+        // applying gravity of the motion
+        //  std::cout << "Event Type: " << e.type << ", Key Symbol: " << e.key.keysym.sym << std::endl;
+        velocity += gravity;
+
+        obstacleRect.y += velocity;
+
+        // check if the object is on the platform
+
+        if (obstacleRect.y >= 385)
+        {
+            obstacleRect.y = 385;
+            velocity = 0;
+            flag = false;
+        }
     }
 }
+    bool Objects::addObstacle() const
+    {
+        if (Prev)
+            return (Prev->getMoverRect().x <= S->getMoverRect().x + S->getMoverRect().w);
+        return true;
+    }
 
-
-
-void Objects::movedown()
-{
-    SDL_Rect& obstacleRect = S->getMoverRect();
-    if (obstacleRect.y + yjump == 385)
-        obstacleRect.y += yjump;
-
-    else
-        obstacleRect.y = 385;
-}
-
-bool Objects::addObstacle() const
-{
-    if (Prev)
-        return (Prev->getMoverRect().x <= S->getMoverRect().x + S->getMoverRect().w);
-    return true;
-}
-
-bool Objects::EndGame() const
-{
-    return crash;
-}
+    bool Objects::EndGame() const
+    {
+        return crash;
+    }

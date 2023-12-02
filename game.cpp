@@ -159,6 +159,7 @@ void Game::run()
 			if (e.type == SDL_QUIT)
 				quit = true;
 
+			// inputHandle(e);
 			switch (currentState)
             {
 				case MENU:
@@ -171,13 +172,11 @@ void Game::run()
 					}
 					break;
 
-				case PLAY:
-					if (e.key.keysym.sym == SDLK_UP)
-						obj.moveup();
-
-					break;
+            case PLAY:
+            
+				obj.update(e);
+                break;
             }
-		}
 
 		if (obj.addObstacle())
 			obj.createObstacles();
@@ -191,13 +190,17 @@ void Game::run()
 				SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
 				break;
 
-			case PLAY:
-				SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
-				obj.drawObjects();
-				break;
+        case PLAY:
+            SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
+            obj.drawObjects();
+			obj.update(e);
+			// obj.moveup(e); //this function is handling the input movement 
+		
+            break;
         }
 
 		//****************************************************************
+		
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
 
 		SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
@@ -217,4 +220,6 @@ void Game::changeMusic(const std::string& musicPath)
     else
         Mix_PlayMusic(GameMusic, -1);
 }
+
+
 
