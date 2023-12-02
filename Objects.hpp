@@ -13,6 +13,8 @@
 #include "staircase3.hpp"
 #include "staircase4.hpp"
 #include "staircase5.hpp"
+#include "FourSpikes1.hpp"
+#include "FourSpikes2.hpp"
 #include "Obstacles.hpp"
 #include "platform.hpp"
 #include <vector>
