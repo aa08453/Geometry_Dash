@@ -18,25 +18,24 @@ using namespace std;
 
 class Objects
 {
-public:
-    Objects() = default;
-    ~Objects();
-    void drawObjects();
-    void createObstacles();
-    void createEssentials();
-    void moveup();
-    void movedown();
-    bool addObstacle() const;
+    public:
+        Objects() = default;
+        ~Objects();
+        void drawObjects();
+        void createObstacles();
+        void createEssentials();
+        void moveup();
+        void movedown();
+        bool addObstacle() const;
+        bool EndGame() const;
 
-
-private:
-    vector <Obstacles*> L;
-    Sprite* S{nullptr};
-    platform* base{nullptr};
-    static int velocity;
-    static bool crash;
-    static int yjump;
-    bool collision(Obstacles* u, Sprite* S) const;
-    Obstacles* Prev{nullptr};
-    
+    private: 
+        vector<Obstacles *> L;
+        Sprite* S{nullptr};
+        platform* base{nullptr};
+        static int velocity;
+        static bool crash;
+        static int yjump;
+        bool collision(Obstacles* u, Sprite* S) const;
+        Obstacles* Prev{nullptr};   
 };

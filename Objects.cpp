@@ -36,6 +36,7 @@ void Objects::drawObjects()
     {
         crash = true;
         S->destroy();
+
     }
 
         if (u->delete_obstacle())
@@ -129,6 +130,11 @@ void Objects::movedown()
 bool Objects::addObstacle() const
 {
     if (Prev)
-        return (Prev->getMoverRect().x <= 375);
+        return (Prev->getMoverRect().x <= S->getMoverRect().x + S->getMoverRect().w);
     return true;
+}
+
+bool Objects::EndGame() const
+{
+    return crash;
 }
