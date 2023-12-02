@@ -1,10 +1,10 @@
 #include "Objects.hpp"
 
 bool Objects::crash = false;
-int Objects::velocity=-10;
-float Objects::jumpVelocity=15;
-float Objects::gravity=1;
-bool Objects:: flag=false;
+float Objects::velocity = -15.;
+float Objects::jumpVelocity = 15.;
+float Objects::gravity = 1.;
+bool Objects:: flag = false;
 
 Objects::~Objects()
 {
@@ -36,7 +36,6 @@ void Objects::drawObjects()
     {
         crash = true;
         S->destroy();
-
     }
 
         if (u->delete_obstacle())
@@ -95,29 +94,33 @@ bool Objects::collision(Obstacles *u, Sprite *S) const
 
 void Objects::update(SDL_Event& e)
 {
-     if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && !flag) {
-        if (!flag) {
-        velocity = -jumpVelocity;
-        flag = true;
+    if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && !flag)
+    {
+        if (!flag)
+        {
+            std::cout << "Going up apparently" << std::endl;
+            velocity = -jumpVelocity;
+            flag = true;
+        }
     }
-    }
 
-    if(flag==true){
-    SDL_Rect& obstacleRect = S->getMoverRect();
-    
-    //applying gravity of the motion
-    // std::cout << "Event Type: " << e.type << ", Key Symbol: " << e.key.keysym.sym << std::endl;
-    velocity+=gravity;
+    if (flag)
+    {
+        SDL_Rect& obstacleRect = S->getMoverRect();
+        
+        //applying gravity of the motion
+        velocity += 1.05*gravity;
 
-    obstacleRect.y+=velocity;
+        obstacleRect.y += velocity;
 
-    //check if the object is on the platform
+        //check if the object is on the platform
 
-    if(obstacleRect.y>=385){
-        obstacleRect.y=385;
-        velocity=0;
-        flag=false;
-    }
+        if (obstacleRect.y >= 385)
+        {
+            obstacleRect.y = 385;
+            velocity = 0;
+            flag = false;
+        }
     }
 }
 

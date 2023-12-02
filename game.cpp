@@ -4,6 +4,7 @@
 SDL_Renderer *Drawing::gRenderer = NULL;
 SDL_Texture *Drawing::assets = NULL;
 SDL_Texture *Drawing::ground = NULL;
+int Game::i = 0;
 
 bool Game::init()
 {
@@ -177,12 +178,20 @@ void Game::run()
             case PLAY:
             
 				obj.update(e);
-                break;
+				
+				if (obj.addObstacle())
+				{
+					obj.createObstacles();
+					++i;
+				}
+				
+				break;
             }
 
 
 			
 		}
+		
         
         
         SDL_RenderClear(Drawing::gRenderer);
@@ -190,9 +199,6 @@ void Game::run()
         switch (currentState)
         {
         case MENU:
-            // Draw your menu here
-			// SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
-            // obj.drawObjects();
             SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
             
             break;

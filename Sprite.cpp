@@ -18,7 +18,7 @@ void Sprite::move()
 
 void Sprite::destroy()
 {
-    moverRect = {2000,2000,35,35};
+    moverRect = {-200000,385,35,35};
 }
 
 SDL_Rect& Sprite::getMoverRect()

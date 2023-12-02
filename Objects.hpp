@@ -34,8 +34,7 @@ class Objects
         platform* base{nullptr};
         static bool crash;
         static bool flag;
-        static int yjump;
-        static int velocity;
+        static float velocity;
         static float jumpVelocity;
         static float gravity;
         bool collision(Obstacles* u, Sprite* S) const;
