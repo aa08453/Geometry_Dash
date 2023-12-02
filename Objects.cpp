@@ -60,8 +60,10 @@ void Objects::drawObjects()
 // creates new objects
 void Objects::createObstacles( )
 {
-    int z = rand() % 6;
-    std::cout << z << "\n";
+    // int z = rand() % 6;
+    // std::cout << z << "\n";
+
+    int z = 4;
 
     //int z = 5;
     if (z == 0)
@@ -73,14 +75,18 @@ void Objects::createObstacles( )
     else if (z == 3)
         L.emplace_back(new Staircase());
     else if (z == 4)
+    {
         L.emplace_back(new HangingBase());
+        L.emplace_back(new HangingBase2());
+    }
     else
+    {
         L.emplace_back(new stairs1());
         L.emplace_back(new stairs2());
         L.emplace_back(new stairs3());
         L.emplace_back(new stairs4());
         L.emplace_back(new stairs5());
-    
+    }
     Prev = L.back();
 }
 

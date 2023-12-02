@@ -6,6 +6,7 @@
 #include "DoubleSpike.hpp"
 #include "TripleSpike.hpp"
 #include "HangingBase.hpp"
+#include "HangingBase2.hpp"
 #include "Staircase.hpp"
 #include "staircase1.hpp"
 #include "staircase2.hpp"
