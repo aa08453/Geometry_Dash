@@ -3,7 +3,6 @@
 SDL_Renderer *Drawing::gRenderer = NULL;
 SDL_Texture *Drawing::assets = NULL;
 SDL_Texture *Drawing::ground = NULL;
-	// currentState=MENU;
 
 //SDL_Texture *Drawing::obstacles = NULL;
 bool Game::init()
@@ -149,8 +148,8 @@ void Game::run()
 {
 	bool quit = false;
 	SDL_Event e;
-	Objects obj;
-
+	
+    Uint32 current_time = SDL_GetTicks();
 	currentState=MENU;
 	while (!quit)
 	{
@@ -163,6 +162,7 @@ void Game::run()
 				quit = true;
 			}
 
+			// inputHandle(e);
 			switch (currentState)
             {
             case MENU:
@@ -175,26 +175,16 @@ void Game::run()
                 break;
 
             case PLAY:
-                
-			   
-                    
-						if (e.key.keysym.sym == SDLK_UP)
-						{
-							obj.moveup();
-						}
-					//
-				// else if (e.type == SDL_KEYUP)
-					// {
-					// 	if (e.key.keysym.sym == SDLK_UP)
-					// 	{
-					// 		obj.movedown();
-					// 	}
-                    // }
-
+            
+				obj.update(e);
                 break;
             }
-		}
 
+
+			
+		}
+        
+        
         SDL_RenderClear(Drawing::gRenderer);
         // Draw based on the current state
         switch (currentState)
@@ -210,10 +200,14 @@ void Game::run()
         case PLAY:
             SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
             obj.drawObjects();
+			obj.update(e);
+			// obj.moveup(e); //this function is handling the input movement 
+		
             break;
         }
 
 		//****************************************************************
+		
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
 
 		SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
@@ -237,4 +231,6 @@ void Game::changeMusic(const std::string& musicPath)
         Mix_PlayMusic(GameMusic, -1);
     }
 }
+
+
 

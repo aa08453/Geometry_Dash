@@ -2,8 +2,10 @@
 
 int Objects::a = 0;
 bool Objects::crash = false;
-int Objects::yjump=100;
-int Objects::velocity=0;
+int Objects::velocity=-10;
+float Objects::jumpVelocity=15;
+float Objects::gravity=1;
+bool Objects:: flag=false;
 
 Objects::~Objects()
 {
@@ -69,55 +71,43 @@ bool Objects::collision(Obstacles* u, Sprite* S)
     (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
 }
 
-void Objects::moveup(){
-    
-     SDL_Rect& obstacleRect = S->getMoverRect();
-    
-    const float gravity = 9.8; // Adjust this value based on your requirements
-    float jumpVelocity = -10.0; // Adjust this value based on your requirements
-    cout<<obstacleRect.y<<endl;
-    // Only apply initial velocity if the sprite is on the ground (you might need a flag for this)
-    if (obstacleRect.y == 385)
-    {
-        velocity = jumpVelocity;
+
+
+
+
+
+void Objects::update(SDL_Event& e) {
+    // Call the moveup function to handle jumping
+    if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && !flag) {
+        if (!flag) {
+        velocity = -jumpVelocity;
+        flag = true;
+    }
     }
 
-    obstacleRect.y += velocity;
-    velocity += gravity;
-
-    // Limit the downward velocity to prevent the sprite from falling too fast
-    if (velocity > 10.0)
-    {
-        velocity = 10.0;
-    }
-}
-
-// void Objects::movedown(){
-//     SDL_Rect& obstacleRect = S->getMoverRect();
-//     if (obstacleRect.y + yjump == 385)
-//         {
-//             obstacleRect.y += yjump;
-            
-//         }
-//     else
-//         {
-//             obstacleRect.y = 385;
-            
-//         }
-// }
-     
-        if (obstacleRect.y - yjump == 290)
-            obstacleRect.y -= yjump;
-
-        else
-            obstacleRect.y = 290;
-}
-
-void Objects::movedown(){
+    if(flag==true){
     SDL_Rect& obstacleRect = S->getMoverRect();
-    if (obstacleRect.y + yjump == 385)
-        obstacleRect.y += yjump;
+    
+    //applying gravity of the motion
+    // std::cout << "Event Type: " << e.type << ", Key Symbol: " << e.key.keysym.sym << std::endl;
+    velocity+=gravity;
 
-    else
-        obstacleRect.y = 385;
+    obstacleRect.y+=velocity;
+
+    //check if the object is on the platform
+
+    if(obstacleRect.y>=385){
+        obstacleRect.y=385;
+        velocity=0;
+        flag=false;
+    }
+    }
+
 }
+
+
+
+
+
+
+
