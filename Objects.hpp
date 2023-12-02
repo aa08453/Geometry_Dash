@@ -33,7 +33,7 @@ class Objects
         bool addObstacle() const;
         bool EndGame() const;
         void update(SDL_Event &e);
-        void movement(bool flag);
+
 
     private : 
         vector<Obstacles *> L;
