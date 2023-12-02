@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include <iostream>
 
 SDL_Renderer *Drawing::gRenderer = NULL;
 SDL_Texture *Drawing::assets = NULL;
@@ -155,9 +156,13 @@ void Game::run()
 	while (!quit)
 	{
 		// Handle events on queue
+		
+		
 		while (SDL_PollEvent(&e) != 0)
 		{
 			// User requests quit
+			// int x = rand()%4;
+			// std::cout << x << std::endl;
 			if (e.type == SDL_QUIT)
 				quit = true;
 
@@ -198,9 +203,10 @@ void Game::run()
 
 		//****************************************************************
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
-
+		
 		SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
 	}
+	
 
 }
 

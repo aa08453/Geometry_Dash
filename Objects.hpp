@@ -3,6 +3,8 @@
 #include "Sprite.hpp"
 #include "Spike.hpp"
 #include "DoubleSpike.hpp"
+#include "Obstacle3.hpp"
+#include "Obstacle4.hpp"
 #include "Obstacles.hpp"
 #include "platform.hpp"
 #include <vector>
@@ -22,7 +24,8 @@ public:
     void createEssentials();
     void moveup();
     void movedown();
-    
+    Objects() = default;
+    ~Objects();
 
 private:
     vector <Obstacles*> L;
