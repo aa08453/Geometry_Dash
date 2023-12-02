@@ -148,62 +148,69 @@ void Game::run()
 {
 	bool quit = false;
 	SDL_Event e;
-	Objects obj;
+	
+    Uint32 current_time = SDL_GetTicks();
 	currentState=MENU;
-	bool flag;
 	while (!quit)
 	{
 		// Handle events on queue
-
 		while (SDL_PollEvent(&e) != 0)
 		{
+			// User requests quit
 			if (e.type == SDL_QUIT)
+			{
 				quit = true;
+			}
 
 			// inputHandle(e);
 			switch (currentState)
             {
-				case MENU:
-					if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
-					{
-						currentState = PLAY; // Change to the play state when the Enter key is pressed
-						changeMusic("NewMusic.mp3");
-						obj.createEssentials();
-					}
-					break;
+            case MENU:
+                if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
+                {
+                currentState = PLAY; // Change to the play state when the Enter key is pressed
+				changeMusic("NewMusic.mp3");
+				obj.createEssentials();
+                }
+                break;
 
-				case PLAY:
-					if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && !flag)
-						obj.movement(flag);
-					break;
+            case PLAY:
+            
+				obj.update(e);
+                break;
             }
 
-			if (obj.addObstacle())
-				obj.createObstacles();
 
-			SDL_RenderClear(Drawing::gRenderer);
-
-			// Draw based on the current state
-			switch (currentState)
-			{
-				case MENU:
-					SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
-					break;
-
-				case PLAY:
-					SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
-					obj.drawObjects();
-					obj.movement(flag);
-
-				break;
-			}
-
-			//****************************************************************
 			
-			SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
-
-			SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
 		}
+        
+        
+        SDL_RenderClear(Drawing::gRenderer);
+        // Draw based on the current state
+        switch (currentState)
+        {
+        case MENU:
+            // Draw your menu here
+			// SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
+            // obj.drawObjects();
+            SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
+            
+            break;
+
+        case PLAY:
+            SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
+            obj.drawObjects();
+			obj.update(e);
+			// obj.moveup(e); //this function is handling the input movement 
+		
+            break;
+        }
+
+		//****************************************************************
+		
+		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
+
+		SDL_Delay(100); // causes sdl engine to delay for specified miliseconds
 	}
 }
 

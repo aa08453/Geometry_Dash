@@ -93,29 +93,31 @@ bool Objects::collision(Obstacles *u, Sprite *S) const
     (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
 }
 
-void Objects::movement(bool flag)
+void Objects::update(SDL_Event& e)
 {
-    if (!flag)
-    {
+     if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && !flag) {
+        if (!flag) {
         velocity = -jumpVelocity;
         flag = true;
     }
+    }
 
-    SDL_Rect &obstacleRect = S->getMoverRect();
+    if(flag==true){
+    SDL_Rect& obstacleRect = S->getMoverRect();
+    
+    //applying gravity of the motion
+    // std::cout << "Event Type: " << e.type << ", Key Symbol: " << e.key.keysym.sym << std::endl;
+    velocity+=gravity;
 
-    // applying gravity of the motion
-    //  std::cout << "Event Type: " << e.type << ", Key Symbol: " << e.key.keysym.sym << std::endl;
-    velocity += gravity;
+    obstacleRect.y+=velocity;
 
-    obstacleRect.y += velocity;
+    //check if the object is on the platform
 
-    // check if the object is on the platform
-
-    if (obstacleRect.y >= 385)
-    {
-        obstacleRect.y = 385;
-        velocity = 0;
-        flag = false;
+    if(obstacleRect.y>=385){
+        obstacleRect.y=385;
+        velocity=0;
+        flag=false;
+    }
     }
 }
 

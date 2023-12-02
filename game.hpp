@@ -26,10 +26,12 @@ class Game
         // Screen dimension constants
         const int SCREEN_WIDTH = 1000;
         const int SCREEN_HEIGHT = 600;
-
+        int  frameCounter;
+        
         // The window we'll be rendering to
         SDL_Window *gWindow = NULL;
         Objects obj;
+        
 
         // Current displayed texture
         SDL_Texture *gTexture = NULL;
