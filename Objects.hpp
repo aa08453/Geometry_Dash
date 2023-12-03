@@ -6,7 +6,15 @@
 #include "DoubleSpike.hpp"
 #include "TripleSpike.hpp"
 #include "HangingBase.hpp"
+#include "HangingBase2.hpp"
 #include "Staircase.hpp"
+#include "staircase1.hpp"
+#include "staircase2.hpp"
+#include "staircase3.hpp"
+#include "staircase4.hpp"
+#include "staircase5.hpp"
+#include "FourSpikes1.hpp"
+#include "FourSpikes2.hpp"
 #include "Obstacles.hpp"
 #include "platform.hpp"
 #include <vector>
@@ -29,7 +37,8 @@ class Objects
         void update(SDL_Event &e);
 
 
-    private : vector<Obstacles *> L;
+    private : 
+        vector<Obstacles *> L;
         Sprite* S{nullptr};
         platform* base{nullptr};
         static bool crash;

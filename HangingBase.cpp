@@ -5,7 +5,7 @@
 
 HangingBase::HangingBase()
 {
-    srcRect = {140, 720, 540, 495};
-    moverRect = {1000, 315, 350, 105};
+    srcRect = {140, 1146, 540, 69};
+    moverRect = {1000, 370, 350, 50};
 }
 
