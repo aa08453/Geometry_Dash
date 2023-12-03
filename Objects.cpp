@@ -66,7 +66,8 @@ void Objects::createObstacles( )
 {
     
 
-    z = rand()%7;
+    // z = rand()%7;
+    z = 6;
 
 
 
@@ -96,9 +97,6 @@ void Objects::createObstacles( )
         L.emplace_back(new JumpDJump());
         L.emplace_back(new JumpDJump2());
     }
-    else{
-        L.emplace_back(new HangingBase());
-    }
     
     Prev = L.back();
 }
@@ -118,7 +116,7 @@ bool Objects::collision(Obstacles *u, Sprite *S, int x) const
     int Sprite_height = S->getMoverRect().y;
     int Sprite_top = S->getMoverRect().y - S->getMoverRect().h;
 
-    if (x == 0 || x == 1 || x == 2 || x == 5)
+    if (x == 0 || x == 1 || x == 2 || x == 4)
     {
         int Spike_front = u->getMoverRect().x;
         int Spike_back = u->getMoverRect().x + u->getMoverRect().w;
@@ -128,7 +126,8 @@ bool Objects::collision(Obstacles *u, Sprite *S, int x) const
         (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
         
     }
-    else if (x == 4)
+    
+    else if (x == 3)
     {
         Obstacles* hanging = L[0];
         int ceiling = hanging->getMoverRect().y;
@@ -145,7 +144,7 @@ bool Objects::collision(Obstacles *u, Sprite *S, int x) const
             return false;
         }
     }
-    else if (x == 6)
+    else if (x == 5)
     {
         Obstacles* first = L[0];
         int first_front = first->getMoverRect().x;
@@ -182,7 +181,7 @@ bool Objects::collision(Obstacles *u, Sprite *S, int x) const
 
     }
 
-    else if (x == 7)
+    else if (x == 6)
     {
         Obstacles* hanging = L[0];
         int ceiling = hanging->getMoverRect().y;
