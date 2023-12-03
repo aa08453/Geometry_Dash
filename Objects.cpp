@@ -2,10 +2,11 @@
 
 bool Objects::crash = false;
 float Objects::velocity = 0.;
-float Objects::jumpVelocity = 27.5;
-float Objects::gravity = 4.;
+const float Objects::jumpVelocity = 27.5;
+const float Objects::gravity = 4.;
 bool Objects::flag = false;
 
+// deleting objects created in the destructor
 Objects::~Objects()
 {
     for (Obstacles *u : L)
@@ -21,6 +22,7 @@ Objects::~Objects()
     base = nullptr;
 }
 
+// drawing all game objects
 void Objects::drawObjects()
 {
     base->draw();
@@ -31,12 +33,14 @@ void Objects::drawObjects()
         u->draw();
         u->move();
 
+        // checking for collision with each obstacle
         if (u->collision(S))
         {
             S->destroy();
             crash = true;
         }
 
+        // checking if the obstacle has left the game screen and needs to be deleted
         if (u->delete_obstacle())
         {
             delete u;
@@ -46,12 +50,13 @@ void Objects::drawObjects()
         else
             ++i;
     }
-
+    
+    // drawing the sprite if it has not collided
     if (!crash)
         S->draw();
 }
 
-// creates new objects
+// creates new objects randomly
 void Objects::createObstacles()
 {
     int z = rand() % 6;
@@ -82,9 +87,11 @@ void Objects::createObstacles()
         L.emplace_back(new JumpDJump2());
     }
 
+    // keeping track of last created object
     Prev = L.back();
 }
 
+// function to create base and sprite
 void Objects::createEssentials()
 {
     S = new Sprite();
@@ -93,13 +100,13 @@ void Objects::createEssentials()
     starting_y = S->getMoverRect().y;
 }
 
+// updating the sprite position when it has to jump
 void Objects::update(SDL_Event &e)
 {
     if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && !flag)
     {
         if (!flag)
         {
-            // std::cout << "Going up apparently" << std::endl;
             velocity = -jumpVelocity;
             flag = true;
         }
@@ -121,6 +128,7 @@ void Objects::update(SDL_Event &e)
     }
 }
 
+// function to check if new obstacle should be introduced
 bool Objects::addObstacle() const
 {
     if (Prev)
@@ -128,6 +136,7 @@ bool Objects::addObstacle() const
     return true;
 }
 
+// tells if the game needs to end by checking if a collision has occurred
 bool Objects::EndGame() const
 {
     return crash;

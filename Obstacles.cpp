@@ -7,7 +7,7 @@ void Obstacles::draw()
 
 void Obstacles::move()
 {
-    moverRect.x -= 30;
+    moverRect.x -= 24;
 }
 
 SDL_Rect& Obstacles::getMoverRect()
