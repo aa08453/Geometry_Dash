@@ -3,9 +3,8 @@
 
 bool Objects::crash = false;
 float Objects::velocity = 0.;
-
-float Objects::jumpVelocity = 13.;
-float Objects::gravity = 1.1;
+float Objects::jumpVelocity = 27.5;
+float Objects::gravity = 4.;
 bool Objects:: flag = false;
 
 Objects::~Objects()
@@ -63,9 +62,6 @@ void Objects::drawObjects()
 void Objects::createObstacles( )
 {
     int z = rand() % 7;
-    // std::cout << z << "\n";
-
-    // int z = 6;
 
    
     if (z == 0)
@@ -76,16 +72,16 @@ void Objects::createObstacles( )
         L.emplace_back(new TripleSpike());
     else if (z == 3)
         L.emplace_back(new Staircase());
-    else if (z == 4)
+    else if (z == 3)
     {
         L.emplace_back(new HangingBase());
         L.emplace_back(new HangingBase2());
     }
-    else if (z == 5)
+    else if (z == 4)
     {
         L.emplace_back(new stairs1());
         L.emplace_back(new stairs2());
-        L.emplace_back(new stairs3());
+        /L.emplace_back(new stairs3());
         L.emplace_back(new stairs4());
         L.emplace_back(new stairs5());
     }
@@ -122,7 +118,6 @@ void Objects::update(SDL_Event& e)
     {
         if (!flag)
         {
-            std::cout << "Going up apparently" << std::endl;
             velocity = -jumpVelocity;
             flag = true;
         }
