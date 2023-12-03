@@ -207,6 +207,11 @@ void Game::run()
             SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
             obj.drawObjects();
 			obj.update(e);
+			if (obj.addObstacle())
+			{
+				obj.createObstacles();
+				++i;
+			}
 			// obj.moveup(e); //this function is handling the input movement 
 		    break;
         }
