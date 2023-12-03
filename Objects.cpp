@@ -4,11 +4,11 @@ bool Objects::crash = false;
 float Objects::velocity = 0.;
 float Objects::jumpVelocity = 27.5;
 float Objects::gravity = 4.;
-bool Objects:: flag = false;
+bool Objects::flag = false;
 
 Objects::~Objects()
 {
-    for (Obstacles* u : L)
+    for (Obstacles *u : L)
     {
         delete u;
         u = nullptr;
@@ -16,7 +16,7 @@ Objects::~Objects()
 
     delete S;
     S = nullptr;
-    
+
     delete base;
     base = nullptr;
 }
@@ -24,14 +24,12 @@ Objects::~Objects()
 void Objects::drawObjects()
 {
     base->draw();
-    
 
     for (auto i = L.begin(); i != L.end();)
     {
-        Obstacles* u = *i;
+        Obstacles *u = *i;
         u->draw();
         u->move();
-
 
         if (u->collision(S))
         {
@@ -53,9 +51,8 @@ void Objects::drawObjects()
         S->draw();
 }
 
-
 // creates new objects
-void Objects::createObstacles( )
+void Objects::createObstacles()
 {
     int z = rand() % 6;
 
@@ -70,7 +67,7 @@ void Objects::createObstacles( )
 
     else if (z == 3)
         L.emplace_back(new BlockSpike());
-    
+
     else if (z == 4)
     {
         L.emplace_back(new DoubleSpike());
@@ -85,8 +82,8 @@ void Objects::createObstacles( )
         L.emplace_back(new JumpDJump2());
     }
 
-        Prev = L.back();
-    }
+    Prev = L.back();
+}
 
 void Objects::createEssentials()
 {
@@ -132,6 +129,6 @@ bool Objects::addObstacle() const
 }
 
 bool Objects::EndGame() const
-{     
+{
     return crash;
 }
