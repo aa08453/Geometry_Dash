@@ -40,7 +40,6 @@ class Objects
         bool EndGame() const;
         void update(SDL_Event &e);
 
-
     private: 
         vector<Obstacles *> L;
         Sprite* S{nullptr};
@@ -50,6 +49,7 @@ class Objects
         static float velocity;
         static float jumpVelocity;
         static float gravity;
-        //bool collision(Obstacles* u, Sprite* S) const;
         Obstacles* Prev{nullptr};   
+        int starting_x{0};
+        int starting_y{0};
 };

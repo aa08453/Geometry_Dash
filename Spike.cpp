@@ -17,5 +17,3 @@ bool Spike::collision(Sprite* S) const
     return (((Spike_front <= Sprite_back && Spike_front >= Sprite_front) ||
     (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
 }
-
-

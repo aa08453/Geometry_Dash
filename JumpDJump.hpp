@@ -4,5 +4,6 @@
 class JumpDJump : public Obstacles
 {
     public:
-        JumpDJump();  
+        JumpDJump();
+        bool collision(Sprite *S) const;
 };
