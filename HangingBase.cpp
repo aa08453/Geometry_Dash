@@ -6,6 +6,6 @@
 HangingBase::HangingBase()
 {
     srcRect = {140, 1146, 540, 69};
-    moverRect = {1000, 370, 350, 50};
+    moverRect = {1010, 370, 350, 50};
 }
 

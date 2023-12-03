@@ -11,5 +11,6 @@ class Obstacles
         void draw();
         void move();
         SDL_Rect &getMoverRect();
+      
         bool delete_obstacle();
 };

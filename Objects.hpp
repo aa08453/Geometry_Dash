@@ -7,14 +7,13 @@
 #include "TripleSpike.hpp"
 #include "HangingBase.hpp"
 #include "HangingBase2.hpp"
-#include "Staircase.hpp"
-#include "staircase1.hpp"
-#include "staircase2.hpp"
-#include "staircase3.hpp"
-#include "staircase4.hpp"
-#include "staircase5.hpp"
 #include "FourSpikes1.hpp"
 #include "FourSpikes2.hpp"
+#include "BlockSpike.hpp"
+#include "SpikeDSpike.hpp"
+#include "SpikeDSpike2.hpp"
+#include "JumpDJump.hpp"
+#include "JumpDJump2.hpp"
 #include "Obstacles.hpp"
 #include "platform.hpp"
 #include <vector>
@@ -47,6 +46,7 @@ class Objects
         static float jumpVelocity;
         static float gravity;
         static int speed;
-        bool collision(Obstacles* u, Sprite* S) const;
+        static int z;
+        bool collision(Obstacles* u, Sprite* S, int x) const;
         Obstacles* Prev{nullptr};   
 };
