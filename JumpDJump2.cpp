@@ -4,7 +4,7 @@
 JumpDJump2::JumpDJump2()
 {
     srcRect = {240, 720, 339, 290};
-    moverRect = {1520, 267, 250, 105};
+    moverRect = {1600, 267, 250, 105};
 }
 
 bool JumpDJump2::collision(Sprite* S) const

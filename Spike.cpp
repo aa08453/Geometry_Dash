@@ -1,4 +1,3 @@
-
 #include "Spike.hpp"
 
 // Constructor for the Spike class
@@ -26,8 +25,7 @@ bool Spike::collision(Sprite* S) const
 
     // Check if there is a collision between the Spike and the Sprite
     return (((Spike_front <= Sprite_back && Spike_front >= Sprite_front) ||
-             (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) &&
-            (Sprite_height >= Spike_height));
+    (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
 }
 
 

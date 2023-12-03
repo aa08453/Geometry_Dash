@@ -5,15 +5,7 @@
 #include "Spike.hpp"
 #include "DoubleSpike.hpp"
 #include "TripleSpike.hpp"
-#include "HangingBase.hpp"
 #include "HangingBase2.hpp"
-#include "staircase1.hpp"
-#include "staircase2.hpp"
-#include "staircase3.hpp"
-#include "staircase4.hpp"
-#include "staircase5.hpp"
-#include "FourSpikes1.hpp"
-#include "FourSpikes2.hpp"
 #include "BlockSpike.hpp"
 #include "SpikeDSpike.hpp"
 #include "SpikeDSpike2.hpp"
@@ -47,8 +39,8 @@ class Objects
         static bool crash;
         static bool flag;
         static float velocity;
-        static float jumpVelocity;
-        static float gravity;
+        const static float jumpVelocity;
+        const static float gravity;
         Obstacles* Prev{nullptr};   
         int starting_x{0};
         int starting_y{0};

@@ -4,12 +4,11 @@
 SDL_Renderer *Drawing::gRenderer = NULL;
 SDL_Texture *Drawing::assets = NULL;
 SDL_Texture *Drawing::ground = NULL;
-int Game::i = 0;
 
 bool Game::init()
 {
-	// Initialization 
-	
+	// Initialization
+
 	bool success = true;
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -66,10 +65,10 @@ bool Game::init()
 bool Game::loadMedia()
 {
 	// Loading success flag
-	currentState=MENU;
+	currentState = MENU;
 
 	bool success = true;
-    
+
 	Drawing::assets = loadTexture("new_asset.png");
 	gTexture = loadTexture("new_bg.png");
 
@@ -77,17 +76,14 @@ bool Game::loadMedia()
 	mainMenuImage = loadTexture("./Menu.png");
 	GameoverImage = loadTexture("./GameOver.png");
 
-
-	
-
-	//Drawing::obstacles = loadTexture("FakeSpike03.png");
+	// Drawing::obstacles = loadTexture("FakeSpike03.png");
 	Drawing::ground = loadTexture("platform.png");
-	if (Drawing::assets == NULL || gTexture == NULL  || Drawing::ground == NULL)
+	if (Drawing::assets == NULL || gTexture == NULL || Drawing::ground == NULL)
 	{
 		printf("Unable to run due to error: %s\n", SDL_GetError());
 		success = false;
 	}
-
+	// initialize the music of the MENU state
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
 	Mix_Music *music = Mix_LoadMUS("Main Menu.mp3");
 	// Mix_Music *music1= Mix_LoadMUS("Main Menu.mp3");
@@ -154,9 +150,9 @@ void Game::run()
 	bool quit = false;
 	bool playStateInitialized = false;
 	SDL_Event e;
-	
-    Uint32 current_time = SDL_GetTicks();
-	currentState=MENU;
+
+	Uint32 current_time = SDL_GetTicks();
+	currentState = MENU; // initialize the current state as MENU
 	while (!quit)
 	{
 
@@ -168,15 +164,15 @@ void Game::run()
 			switch (currentState)
 			{
 			case MENU:
-				if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
+				if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN) // should change the state with ENTER key
 				{
 					SDL_Delay(100);
 					currentState = PLAY;
 					changeMusic("NewMusic.mp3");
-					// obj.createEssentials();
+
 					if (!playStateInitialized)
 					{
-						obj.createEssentials();
+						obj.createEssentials(); // making all the objects
 						playStateInitialized = true;
 					}
 				}
@@ -186,10 +182,7 @@ void Game::run()
 				obj.update(e); // update function is making a projectile of the vertical movement
 
 				if (obj.addObstacle())
-				{
 					obj.createObstacles();
-					++i;
-				}
 
 				break;
 
@@ -211,14 +204,11 @@ void Game::run()
 			SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
 
 			obj.drawObjects();
-			obj.update(e); // we are calling
+			obj.update(e); // we are calling the a function for projectile motion of the vertical movement
 			if (obj.addObstacle())
-			{
 				obj.createObstacles();
-				++i;
-			}
-			// obj.moveup(e); //this function is handling the input movement
-			if (obj.EndGame())
+
+			if (obj.EndGame()) // this condition is for checking the collision for the cube to change states
 			{
 				currentState = FINAL;
 				Mix_HaltMusic();
@@ -241,27 +231,14 @@ void Game::run()
 	}
 }
 
-void Game::changeMusic(const std::string& musicPath)
+void Game::changeMusic(const std::string &musicPath)
 {
-    // Stop the currently playing music
-    Mix_HaltMusic();
-    // Load the new music
-    Mix_Music *GameMusic = Mix_LoadMUS("Back On Track.mp3");
-    if (GameMusic == NULL)
-        printf("Unable to load new music: %s\n", Mix_GetError());
-    else
-        Mix_PlayMusic(GameMusic, -1);
+	// Stop the currently playing music
+	Mix_HaltMusic();
+	// Load the new music
+	Mix_Music *GameMusic = Mix_LoadMUS("Back On Track.mp3");
+	if (GameMusic == NULL)
+		printf("Unable to load new music: %s\n", Mix_GetError());
+	else
+		Mix_PlayMusic(GameMusic, -1);
 }
-
-void Game::changeMusicF(const std::string& musicPath)
-{
-    // Stop the currently playing music
-    Mix_HaltMusic();
-    // Load the new music
-    Mix_Music *GameMusic = Mix_LoadMUS("Final Music.mp3");
-    if (GameMusic == NULL)
-        printf("Unable to load new music: %s\n", Mix_GetError());
-    else
-        Mix_PlayMusic(GameMusic, -1);
-}
-
