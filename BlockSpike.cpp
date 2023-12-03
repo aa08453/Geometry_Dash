@@ -1,4 +1,3 @@
-//Purple base with hanging
 #include "BlockSpike.hpp"
 
 // Include the necessary library for input and output operations
