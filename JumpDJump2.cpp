@@ -9,14 +9,12 @@ JumpDJump2::JumpDJump2()
 {
     // Initialize the source rectangle for texture mapping
     srcRect = {240, 720, 339, 290};
-<<<<<<< HEAD
     
     // Initialize the mover rectangle for the JumpDJump2 object
     // Positioned at (1520, 267) with a width of 250 and height of 105
     moverRect = {1520, 267, 250, 105};
-=======
     moverRect = {1600, 267, 250, 105};
->>>>>>> 65aab302b3cf15b1d8bf62385b84c3b03d4f7cae
+
 }
 
 // Function to check collision between the JumpDJump2 object and a Sprite
