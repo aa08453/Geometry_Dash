@@ -4,7 +4,7 @@
 bool Objects::crash = false;
 float Objects::velocity = 0.;
 int Objects::speed = -1;
-float Objects::jumpVelocity = 20.;
+float Objects::jumpVelocity = 13.;
 float Objects::gravity = 1.1;
 bool Objects:: flag = false;
 
@@ -36,8 +36,9 @@ void Objects::drawObjects()
 
     if (collision(u, S))
     {
-        crash = true;
+       
         S->destroy();
+        crash = true;
 
     }
 
@@ -153,6 +154,6 @@ bool Objects::addObstacle() const
 }
 
 bool Objects::EndGame() const
-{
+{     
     return crash;
 }

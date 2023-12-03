@@ -75,6 +75,10 @@ bool Game::loadMedia()
 
 	// mainMenuImage= loadTexture("Menu.png");
 	mainMenuImage = loadTexture("./Menu.png");
+	GameoverImage = loadTexture("./GameOver.png");
+
+
+	
 
 	//Drawing::obstacles = loadTexture("FakeSpike03.png");
 	Drawing::ground = loadTexture("platform.png");
@@ -158,42 +162,45 @@ void Game::run()
 		
 		while (SDL_PollEvent(&e) != 0)
 		{
-			// User requests quit
 			if (e.type == SDL_QUIT)
-			{
-				quit = true;
-			}
+    {
+        quit = true;
+    }
 
-			// inputHandle(e);
-			switch (currentState)
-            {
-            case MENU:
-                if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
-                {
-                currentState = PLAY; // Change to the play state when the Enter key is pressed
-				changeMusic("NewMusic.mp3");
-				obj.createEssentials();
-				obj.createObstacles();
-				
-                }
-                break;
+    switch (currentState)
+    {
+    case MENU:
+        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
+        {
+            SDL_Delay(100);
+            currentState = PLAY;
+            changeMusic("NewMusic.mp3");
+            obj.createEssentials();
+            obj.createObstacles();
+        }
+        break;
 
-            case PLAY:
-				
-				obj.update(e);
-				
-				if (obj.addObstacle())
-				{
-					obj.createObstacles();
-					++i;
-				}
-				
-				break;
-            }
+    case PLAY:
+        obj.update(e);
 
+        if (obj.addObstacle())
+        {
+            obj.createObstacles();
+            ++i;
+        }
 
-			
-		}
+        break;
+	case FINAL:
+	    Mix_HaltMusic();
+		Mix_Music *GameMusic = Mix_LoadMUS("Final Music.mp3");
+		if (GameMusic == NULL)
+		printf("Unable to load new music: %s\n", Mix_GetError());
+		else
+		Mix_PlayMusic(GameMusic, -1);
+	    break;
+
+    }
+}
 		
         
         
@@ -210,16 +217,19 @@ void Game::run()
 
         case PLAY:
             SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
-			// if(obj.addObstacle())
-			// {
-			// 	
-				
-			// }
 			
 			obj.drawObjects();
 			obj.update(e);
 			// obj.moveup(e); //this function is handling the input movement 
+			if(obj.EndGame()==true){
+                    currentState=FINAL;
+				}
+				
 		    break;
+		case FINAL:
+		    SDL_RenderCopy(Drawing::gRenderer, GameoverImage, NULL, NULL);
+			
+            
         }
 
 		//****************************************************************
@@ -235,9 +245,22 @@ void Game::changeMusic(const std::string& musicPath)
     // Stop the currently playing music
     Mix_HaltMusic();
     // Load the new music
-    Mix_Music *GameMusic = Mix_LoadMUS("Stereo Madness.mp3");
+    Mix_Music *GameMusic = Mix_LoadMUS("Back On Track.mp3");
     if (GameMusic == NULL)
         printf("Unable to load new music: %s\n", Mix_GetError());
     else
         Mix_PlayMusic(GameMusic, -1);
 }
+
+void Game::changeMusicF(const std::string& musicPath)
+{
+    // Stop the currently playing music
+    Mix_HaltMusic();
+    // Load the new music
+    Mix_Music *GameMusic = Mix_LoadMUS("Final Music.mp3");
+    if (GameMusic == NULL)
+        printf("Unable to load new music: %s\n", Mix_GetError());
+    else
+        Mix_PlayMusic(GameMusic, -1);
+}
+
