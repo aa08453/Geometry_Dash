@@ -12,6 +12,8 @@ void Sprite::draw()
 }
 
 
+
+
 void Sprite::destroy()
 {
     moverRect = {-200000,385,35,35};

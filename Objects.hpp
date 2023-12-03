@@ -14,6 +14,11 @@
 #include "staircase5.hpp"
 #include "FourSpikes1.hpp"
 #include "FourSpikes2.hpp"
+#include "BlockSpike.hpp"
+#include "SpikeDSpike.hpp"
+#include "SpikeDSpike2.hpp"
+#include "JumpDJump.hpp"
+#include "JumpDJump2.hpp"
 #include "Obstacles.hpp"
 #include "platform.hpp"
 #include <vector>
