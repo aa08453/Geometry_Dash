@@ -228,6 +228,13 @@ void Game::run()
 			// obj.moveup(e); //this function is handling the input movement 
 			if(obj.EndGame()==true){
                     currentState=FINAL;
+					 Mix_HaltMusic();
+					Mix_Music *GameMusic = Mix_LoadMUS("Final Music.mp3");
+					if (GameMusic == NULL)
+					printf("Unable to load new music: %s\n", Mix_GetError());
+					else
+					Mix_PlayMusic(GameMusic, -1);
+	    
 				}
 				
 		    break;
