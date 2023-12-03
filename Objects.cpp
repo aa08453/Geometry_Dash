@@ -68,6 +68,8 @@ void Objects::createObstacles( )
 
     z = rand()%7;
 
+
+
     if (z == 0)
         L.emplace_back(new Spike());
     else if (z == 1)
@@ -88,11 +90,14 @@ void Objects::createObstacles( )
         L.emplace_back(new SpikeDSpike());
         L.emplace_back(new SpikeDSpike2());
     }
-    else 
+    else if (z == 6)
     {
         L.emplace_back(new HangingBase2());
         L.emplace_back(new JumpDJump());
         L.emplace_back(new JumpDJump2());
+    }
+    else{
+        L.emplace_back(new HangingBase());
     }
     
     Prev = L.back();
@@ -101,6 +106,8 @@ void Objects::createObstacles( )
 void Objects::createEssentials()
 {
     S = new Sprite();
+    starting_x = S->getMoverRect().x;
+    starting_y = S->getMoverRect().y;
     base = new platform();
 }
 
@@ -210,6 +217,10 @@ bool Objects::collision(Obstacles *u, Sprite *S, int x) const
             }
         }
     }
+    // else if (x == 9)
+    // {
+
+    // }
 
     else{
         return false;
@@ -238,9 +249,9 @@ void Objects::update(SDL_Event& e)
         //std::cout << "down " << obstacleRect.y << std::endl;
         //check if the object is on the platform
 
-        if (obstacleRect.y >= 385)
+        if (obstacleRect.y >= starting_y)
         {
-            obstacleRect.y = 385;
+            obstacleRect.y = starting_y;
             velocity = 0;
             flag = false;
         }

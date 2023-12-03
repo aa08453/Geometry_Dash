@@ -49,4 +49,6 @@ class Objects
         static int z;
         bool collision(Obstacles* u, Sprite* S, int x) const;
         Obstacles* Prev{nullptr};   
+        int starting_x;
+        int starting_y;
 };
