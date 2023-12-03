@@ -1,4 +1,4 @@
-// Include the header file for the DoubleSpike class
+
 #include "DoubleSpike.hpp"
 
 // Include the necessary library for input and output operations

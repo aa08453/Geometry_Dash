@@ -1,4 +1,4 @@
-// Include the header file for the TripleSpike class
+
 #include "TripleSpike.hpp"
 
 #include <iostream>
