@@ -6,7 +6,7 @@
 SpikeDSpike2::SpikeDSpike2()
 {
     srcRect = {166, 301, 118, 59};
-    moverRect = {1250, 385, 59, 35};
+    moverRect = {1350, 385, 59, 35};
 }
 
 bool SpikeDSpike2::collision(Sprite *S) const

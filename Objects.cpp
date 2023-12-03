@@ -57,7 +57,7 @@ void Objects::drawObjects()
 // creates new objects
 void Objects::createObstacles( )
 {
-    int z = rand() % 4;
+    int z = rand() % 6;
 
     if (z == 0)
         L.emplace_back(new Spike());
@@ -71,19 +71,19 @@ void Objects::createObstacles( )
     else if (z == 3)
         L.emplace_back(new BlockSpike());
     
-    // else if (z == 4)
-    // {
-    //     L.emplace_back(new DoubleSpike());
-    //     L.emplace_back(new SpikeDSpike());
-    //     L.emplace_back(new SpikeDSpike2());
-    // }
+    else if (z == 4)
+    {
+        L.emplace_back(new DoubleSpike());
+        L.emplace_back(new SpikeDSpike());
+        L.emplace_back(new SpikeDSpike2());
+    }
 
-    // else
-    // {
-    //     L.emplace_back(new HangingBase2());
-    //     L.emplace_back(new JumpDJump());
-    //     L.emplace_back(new JumpDJump2());
-    // }
+    else
+    {
+        L.emplace_back(new HangingBase2());
+        L.emplace_back(new JumpDJump());
+        L.emplace_back(new JumpDJump2());
+    }
 
         Prev = L.back();
     }
