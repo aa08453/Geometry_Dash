@@ -220,6 +220,11 @@ void Game::run()
 			
 			obj.drawObjects();
 			obj.update(e);
+			if (obj.addObstacle())
+			{
+				obj.createObstacles();
+				++i;
+			}
 			// obj.moveup(e); //this function is handling the input movement 
 			if(obj.EndGame()==true){
                     currentState=FINAL;

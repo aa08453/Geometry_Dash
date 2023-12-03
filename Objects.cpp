@@ -3,7 +3,7 @@
 
 bool Objects::crash = false;
 float Objects::velocity = 0.;
-int Objects::speed = -1;
+
 float Objects::jumpVelocity = 13.;
 float Objects::gravity = 1.1;
 bool Objects:: flag = false;
@@ -117,11 +117,12 @@ bool Objects::collision(Obstacles *u, Sprite *S) const
 
 void Objects::update(SDL_Event& e)
 {
+    
     if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && !flag)
     {
         if (!flag)
         {
-            //std::cout << "Going up apparently" << std::endl;
+            std::cout << "Going up apparently" << std::endl;
             velocity = -jumpVelocity;
             flag = true;
         }
@@ -129,12 +130,10 @@ void Objects::update(SDL_Event& e)
 
     if (flag)
     {
-        
         SDL_Rect& obstacleRect = S->getMoverRect();
-        //std::cout << "up " << obstacleRect.y << std::endl;
         velocity += gravity;
         obstacleRect.y += velocity;
-        //std::cout << "down " << obstacleRect.y << std::endl;
+
         //check if the object is on the platform
 
         if (obstacleRect.y >= 385)
