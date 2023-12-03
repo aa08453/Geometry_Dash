@@ -7,4 +7,5 @@ class BlockSpike : public Obstacles
 {
     public:
         BlockSpike();  
+        bool collision (Sprite* S) const;
 };

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Include the header file for the BlockSpike class
+=======
+//Purple base with hanging
+>>>>>>> aeb751e50a5b2f5b097eecbb40f1e669eafe05a6
 #include "BlockSpike.hpp"
 
 // Include the necessary library for input and output operations
@@ -15,5 +19,18 @@ BlockSpike::BlockSpike()
     moverRect = {1000, 370, 35, 50};
 }
 
+<<<<<<< HEAD
 
 
+=======
+bool BlockSpike::collision (Sprite* S) const
+{
+    int Sprite_front = S->getMoverRect().x;
+    int Sprite_back = S->getMoverRect().x + S->getMoverRect().w;
+    int Sprite_top = S->getMoverRect().y - S->getMoverRect().h;
+    int ceiling = moverRect.y;
+    int hanging_front = moverRect.x;
+    int hanging_back = moverRect.x + moverRect.w;
+    return (Sprite_top <= ceiling + 35 && Sprite_back <= hanging_back && Sprite_front >= hanging_front);
+}
+>>>>>>> aeb751e50a5b2f5b097eecbb40f1e669eafe05a6

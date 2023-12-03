@@ -152,91 +152,88 @@ SDL_Texture *Game::loadTexture(std::string path)
 void Game::run()
 {
 	bool quit = false;
+	bool playStateInitialized = false;
 	SDL_Event e;
 	
     Uint32 current_time = SDL_GetTicks();
 	currentState=MENU;
 	while (!quit)
 	{
-		// Handle events on queue
-		
+
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_QUIT)
-        		quit = true;
+				quit = true;
 
 			switch (currentState)
 			{
-				case MENU:
-					if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
-					{
-						SDL_Delay(100);
-						currentState = PLAY;
-						changeMusic("NewMusic.mp3");
-						obj.createEssentials();
-					}
-					break;
-
-				case PLAY:
-					obj.update(e);
-
-					if (obj.addObstacle())
-					{
-						obj.createObstacles();
-						++i;
-					}
-
-					break;
-				case FINAL:
-					Mix_HaltMusic();
-					Mix_Music *GameMusic = Mix_LoadMUS("Final Music.mp3");
-					if (GameMusic == NULL)
-					printf("Unable to load new music: %s\n", Mix_GetError());
-					else
-					Mix_PlayMusic(GameMusic, -1);
-					break;
-			}
-		}
-		
-		SDL_RenderClear(Drawing::gRenderer);
-			
-		// Draw based on the current state
-		switch (currentState)
-		{
 			case MENU:
-				SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
-				
+				if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
+				{
+					SDL_Delay(100);
+					currentState = PLAY;
+					changeMusic("NewMusic.mp3");
+					// obj.createEssentials();
+					if (!playStateInitialized)
+					{
+						obj.createEssentials();
+						playStateInitialized = true;
+					}
+				}
 				break;
 
 			case PLAY:
-				SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
-				
-				obj.drawObjects();
-				obj.update(e);
+				obj.update(e); // update function is making a projectile of the vertical movement
+
 				if (obj.addObstacle())
 				{
 					obj.createObstacles();
 					++i;
 				}
-				// obj.moveup(e); //this function is handling the input movement 
-				if (obj.EndGame())
-				{
-					currentState = FINAL;
-					Mix_HaltMusic();
-					Mix_Music *GameMusic = Mix_LoadMUS("Final Music.mp3");
 
-					if (GameMusic == NULL)
-						printf("Unable to load new music: %s\n", Mix_GetError());
-					else
-						Mix_PlayMusic(GameMusic, -1);
-			
-				}
 				break;
 
-			case FINAL:
-				SDL_RenderCopy(Drawing::gRenderer, GameoverImage, NULL, NULL);  
+				// we don't need to use final case here as it is not needed.We are using it below
+			}
 		}
-		
+
+		SDL_RenderClear(Drawing::gRenderer);
+
+		// Draw based on the current state
+		switch (currentState)
+		{
+		case MENU:
+			SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
+
+			break;
+
+		case PLAY:
+			SDL_RenderCopy(Drawing::gRenderer, gTexture, NULL, NULL);
+
+			obj.drawObjects();
+			obj.update(e); // we are calling
+			if (obj.addObstacle())
+			{
+				obj.createObstacles();
+				++i;
+			}
+			// obj.moveup(e); //this function is handling the input movement
+			if (obj.EndGame())
+			{
+				currentState = FINAL;
+				Mix_HaltMusic();
+				Mix_Music *GameMusic = Mix_LoadMUS("Final Music.mp3");
+
+				if (GameMusic == NULL)
+					printf("Unable to load new music: %s\n", Mix_GetError());
+				else
+					Mix_PlayMusic(GameMusic, -1);
+			}
+			break;
+
+		case FINAL:
+			SDL_RenderCopy(Drawing::gRenderer, GameoverImage, NULL, NULL); // displays the final image game
+		}
 
 		SDL_RenderPresent(Drawing::gRenderer); // displays the updated renderer
 
