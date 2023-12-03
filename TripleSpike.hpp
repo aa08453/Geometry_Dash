@@ -6,5 +6,6 @@
 class TripleSpike : public Obstacles
 {
     public:
-        TripleSpike(); 
+        TripleSpike();
+        bool collision(Sprite *S) const;
 };

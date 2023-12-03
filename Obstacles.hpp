@@ -1,6 +1,8 @@
+#pragma once
 #include "drawing.hpp"
 #include <iostream>
-#pragma once
+#include "Sprite.hpp"
+
 class Obstacles
 {
     protected:
@@ -12,4 +14,5 @@ class Obstacles
         void move();
         SDL_Rect &getMoverRect();
         bool delete_obstacle();
+        virtual bool collision(Sprite *S) const = 0;
 };

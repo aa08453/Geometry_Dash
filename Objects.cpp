@@ -1,5 +1,4 @@
 #include "Objects.hpp"
-#include <iostream>
 
 bool Objects::crash = false;
 float Objects::velocity = 0.;
@@ -15,9 +14,9 @@ Objects::~Objects()
         u = nullptr;
     }
 
-
     delete S;
     S = nullptr;
+    
     delete base;
     base = nullptr;
 }
@@ -33,13 +32,13 @@ void Objects::drawObjects()
         u->move();
 
 
-    if (collision(u, S))
-    {
-       
-        S->destroy();
-        crash = true;
+        if (u->collision(S))
+        {
+        
+            S->destroy();
+            crash = true;
 
-    }
+        }
 
         if (u->delete_obstacle())
         {
@@ -52,16 +51,13 @@ void Objects::drawObjects()
     }
 
     if (!crash)
-    {
         S->draw();
-        S->move();
-    }
 }
 
 // creates new objects
 void Objects::createObstacles( )
 {
-    int z = rand() % 7;
+    int z = rand() % 6;
 
    
     if (z == 0)
@@ -71,8 +67,6 @@ void Objects::createObstacles( )
     else if (z == 2)
         L.emplace_back(new TripleSpike());
     else if (z == 3)
-        L.emplace_back(new Staircase());
-    else if (z == 3)
     {
         L.emplace_back(new HangingBase());
         L.emplace_back(new HangingBase2());
@@ -81,7 +75,7 @@ void Objects::createObstacles( )
     {
         L.emplace_back(new stairs1());
         L.emplace_back(new stairs2());
-        /L.emplace_back(new stairs3());
+        L.emplace_back(new stairs3());
         L.emplace_back(new stairs4());
         L.emplace_back(new stairs5());
     }
@@ -99,17 +93,17 @@ void Objects::createEssentials()
     base = new platform();
 }
 
-bool Objects::collision(Obstacles *u, Sprite *S) const
-{
-    int Spike_front = u->getMoverRect().x;
-    int Spike_back = u->getMoverRect().x + u->getMoverRect().w;
-    int Sprite_front = S->getMoverRect().x;
-    int Sprite_back = S->getMoverRect().x + S->getMoverRect().w;
-    int Sprite_height = S->getMoverRect().y;
-    int Spike_height = u->getMoverRect().y;
-    return (((Spike_front <= Sprite_back && Spike_front >= Sprite_front) ||
-    (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
-}
+// bool Objects::collision(Obstacles *u, Sprite *S) const
+// {
+//     int Spike_front = u->getMoverRect().x;
+//     int Spike_back = u->getMoverRect().x + u->getMoverRect().w;
+//     int Sprite_front = S->getMoverRect().x;
+//     int Sprite_back = S->getMoverRect().x + S->getMoverRect().w;
+//     int Sprite_height = S->getMoverRect().y;
+//     int Spike_height = u->getMoverRect().y;
+//     return (((Spike_front <= Sprite_back && Spike_front >= Sprite_front) ||
+//     (Spike_back <= Sprite_back && Spike_back >= Sprite_front)) && (Sprite_height >= Spike_height));
+// }
 
 void Objects::update(SDL_Event& e)
 {

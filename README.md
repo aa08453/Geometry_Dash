@@ -19,23 +19,15 @@ cd OOP_Project
 5)  cmake -G "MinGW Makefiles" ..
 6)  mingw32-make
 7)  .\main.exe
-Then For Rerun:
-1) .\main.exe
 
 Using G++:
-Use this command to run on terminal:
+
+Use this command to run on terminal to compile:
 g++ *.cpp -IC:\mingw_dev_lib\include\SDL2 -LC:\mingw_dev_lib\lib -w -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -o a.exe
 
-
-
+Then run the .\a.exe command to run the game
 
 ## Contributing
 
 If you would like to contribute to this project, please submit a pull request.
 
-<!-- ## References
-
-1. Parallel BFS Implemenation:  
-Blelloch, G.E. and Maggs, B.M. (2010). Parallel Algorithms. School of Computer Science, Carnegie Mellon University. pp. 22-24
-2. Sequential Closest Pair Implementation:  
-syphh. (2021, July 24). closest_pair.py [Gist]. GitHub. http://gist.github.com/syphh/b6668694edacf8cc987f89bf1270125c -->

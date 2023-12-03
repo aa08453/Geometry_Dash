@@ -1,13 +1,11 @@
-// #include<SDL.h>
+#pragma once
 #include "drawing.hpp"
-#include "Obstacles.hpp"
 #include <iostream>
 
 class Sprite
 {
     public:
         Sprite();
-        void move();
         void draw();
         void destroy();
         SDL_Rect &getMoverRect();

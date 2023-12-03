@@ -19,3 +19,8 @@ bool Obstacles::delete_obstacle()
 {
     return (moverRect.x <= -moverRect.w);
 }
+
+bool Obstacles::collision(Sprite *S) const
+{
+    return false;
+}

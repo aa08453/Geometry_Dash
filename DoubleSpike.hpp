@@ -5,4 +5,5 @@ class DoubleSpike : public Obstacles
 {
     public:
         DoubleSpike(int x = 1000, int w = 59);
+        bool collision(Sprite* S) const;
 };

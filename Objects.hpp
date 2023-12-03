@@ -7,7 +7,6 @@
 #include "TripleSpike.hpp"
 #include "HangingBase.hpp"
 #include "HangingBase2.hpp"
-#include "Staircase.hpp"
 #include "staircase1.hpp"
 #include "staircase2.hpp"
 #include "staircase3.hpp"
@@ -37,7 +36,7 @@ class Objects
         void update(SDL_Event &e);
 
 
-    private : 
+    private: 
         vector<Obstacles *> L;
         Sprite* S{nullptr};
         platform* base{nullptr};
@@ -46,6 +45,6 @@ class Objects
         static float velocity;
         static float jumpVelocity;
         static float gravity;
-        bool collision(Obstacles* u, Sprite* S) const;
+        //bool collision(Obstacles* u, Sprite* S) const;
         Obstacles* Prev{nullptr};   
 };

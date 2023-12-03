@@ -11,10 +11,6 @@ void Sprite::draw()
     SDL_RenderCopy(Drawing::gRenderer, Drawing::assets, &srcRect, &moverRect);
 }
 
-void Sprite::move()
-{
-    
-}
 
 void Sprite::destroy()
 {

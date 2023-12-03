@@ -7,4 +7,5 @@ class HangingBase : public Obstacles
 {
     public:
         HangingBase();  
+        bool collision(Sprite *S) const;
 };
