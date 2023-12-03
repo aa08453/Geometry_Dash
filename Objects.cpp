@@ -4,8 +4,8 @@
 bool Objects::crash = false;
 float Objects::velocity = 0.;
 
-float Objects::jumpVelocity = 13.;
-float Objects::gravity = 1.1;
+float Objects::jumpVelocity = 27.5;
+float Objects::gravity = 4;
 bool Objects:: flag = false;
 
 Objects::~Objects()
@@ -122,7 +122,7 @@ void Objects::update(SDL_Event& e)
     {
         if (!flag)
         {
-            std::cout << "Going up apparently" << std::endl;
+            // std::cout << "Going up apparently" << std::endl;
             velocity = -jumpVelocity;
             flag = true;
         }

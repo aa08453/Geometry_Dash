@@ -170,6 +170,7 @@ void Game::run()
     switch (currentState)
     {
     case MENU:
+	    
         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
         {
             SDL_Delay(100);
@@ -181,6 +182,7 @@ void Game::run()
         break;
 
     case PLAY:
+	    
         obj.update(e);
 
         if (obj.addObstacle())
@@ -191,12 +193,16 @@ void Game::run()
 
         break;
 	case FINAL:
+	    // cout<<"Game Over"<<endl;
+
 	    Mix_HaltMusic();
 		Mix_Music *GameMusic = Mix_LoadMUS("Final Music.mp3");
 		if (GameMusic == NULL)
 		printf("Unable to load new music: %s\n", Mix_GetError());
 		else
 		Mix_PlayMusic(GameMusic, -1);
+		
+
 	    break;
 
     }
@@ -211,6 +217,7 @@ void Game::run()
         switch (currentState)
         {
         case MENU:
+		    cout<<"Press Enter to start the game."<<endl;
             SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
             
             break;
@@ -240,7 +247,7 @@ void Game::run()
 		    break;
 		case FINAL:
 		    SDL_RenderCopy(Drawing::gRenderer, GameoverImage, NULL, NULL);
-			
+			cout<<"Game Over!"<<endl;
             
         }
 
