@@ -12,7 +12,7 @@ SpikeDSpike2::SpikeDSpike2()
     
     // Initialize the mover rectangle for the SpikeDSpike2 object
     // Positioned at (1350, 385) with a width of 59 and height of 35
-    moverRect = {1350, 385, 59, 35};
+    moverRect = {1275, 385, 59, 35};
 }
 
 // Function to check collision between the SpikeDSpike2 object and a Sprite

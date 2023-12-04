@@ -13,7 +13,7 @@ JumpDJump2::JumpDJump2()
     // Initialize the mover rectangle for the JumpDJump2 object
     // Positioned at (1520, 267) with a width of 250 and height of 105
     moverRect = {1520, 267, 250, 105};
-    moverRect = {1600, 267, 250, 105};
+    moverRect = {1500, 267, 250, 105};
 
 }
 
