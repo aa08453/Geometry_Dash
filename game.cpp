@@ -168,7 +168,7 @@ void Game::run()
 				{
 					SDL_Delay(100);
 					currentState = PLAY;
-					changeMusic("NewMusic.mp3");
+					changeMusic("Back On Track.mp3");
 
 					if (!playStateInitialized)
 					{
