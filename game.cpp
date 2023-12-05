@@ -84,17 +84,7 @@ bool Game::loadMedia()
 		success = false;
 	}
 	// initialize the music of the MENU state
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
-	Mix_Music *music = Mix_LoadMUS("Main Menu.mp3");
-	// Mix_Music *music1= Mix_LoadMUS("Main Menu.mp3");
-	if (music == NULL)
-	{
-		printf("Unable to load music: %s\n", Mix_GetError());
-		success = false;
-	}
-
-	Mix_PlayMusic(music, -1);
-
+	LoadMusic("Main Menu.mp3");
 	return success;
 }
 
@@ -228,6 +218,17 @@ void Game::run()
 void Game::changeMusic(const std::string &musicPath)
 {
 	// Stop the currently playing music
+	Mix_HaltMusic();
+	// Load the new music
+	Mix_Music *GameMusic = Mix_LoadMUS(musicPath.c_str());
+	if (GameMusic == NULL)
+		printf("Unable to load new music: %s\n", Mix_GetError());
+	else
+		Mix_PlayMusic(GameMusic, -1);
+}
+
+void Game::LoadMusic(const std::string &musicPath){
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
 	Mix_HaltMusic();
 	// Load the new music
 	Mix_Music *GameMusic = Mix_LoadMUS(musicPath.c_str());

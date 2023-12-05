@@ -20,9 +20,7 @@ class Game
         void run();
         // void updateState();
         void changeMusic(const std::string& musicPath);
-        void changeMusicF(const std::string& musicPath);
-
-        
+        void LoadMusic(const std::string& musicPath);
 
     private:
         // Screen dimension constants
@@ -50,5 +48,5 @@ class Game
             FINAL
         };
 
-        GameState currentState;   //enum object
+        GameState currentState;   //enum object 
 };
