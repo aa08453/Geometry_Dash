@@ -236,9 +236,10 @@ void Game::changeMusic(const std::string &musicPath)
 	// Stop the currently playing music
 	Mix_HaltMusic();
 	// Load the new music
-	Mix_Music *GameMusic = Mix_LoadMUS("Back On Track.mp3");
+	Mix_Music *GameMusic = Mix_LoadMUS(musicPath.c_str());
 	if (GameMusic == NULL)
 		printf("Unable to load new music: %s\n", Mix_GetError());
 	else
 		Mix_PlayMusic(GameMusic, -1);
 }
+
