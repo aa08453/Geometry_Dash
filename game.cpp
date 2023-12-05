@@ -211,13 +211,7 @@ void Game::run()
 			if (obj.EndGame()) // this condition is for checking the collision for the cube to change states
 			{
 				currentState = FINAL;
-				Mix_HaltMusic();
-				Mix_Music *GameMusic = Mix_LoadMUS("Final Music.mp3");
-
-				if (GameMusic == NULL)
-					printf("Unable to load new music: %s\n", Mix_GetError());
-				else
-					Mix_PlayMusic(GameMusic, -1);
+				changeMusic("Final Music.mp3");
 			}
 			break;
 
