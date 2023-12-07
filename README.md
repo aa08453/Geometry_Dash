@@ -5,7 +5,7 @@
 Geometry Dash is an endless runner platform game in which the player controls a cube shaped icon that runs for an infinite amount of time while avoiding obstacles. The player's objective is to survive for as long as possible. The game environment is created through procedural generation as obstacles appear randomly which can be avoiding by jumping  by over them.
 
 ## Instructions
-In the initial or menu state of the game, pressing the "Enter" key will transition to the play state. In the play state, utilize the "Space" key for upward movement of the cube, controlling its actions within the game environment. In the event of a game over, exit the game. To play again, rerun the game , as the current implementation does not support an automatic loop back to the initial or menu state after reaching the game over state.
+In the initial or menu state of the game, pressing the "Enter" key will transition to the play state. In the play state, utilize the "Space" key for upward movement of the cube, controlling its actions within the game environment. In the event of a game over,  To play again, rerun the game ny pressing "ENTER" key and it takes you back to the Iniital State , as the current implementation does  support an automatic loop back to the initial or menu state after reaching the game over state.
 
 How to Run the Project:
 Using Cmake:
