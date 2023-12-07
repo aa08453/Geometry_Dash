@@ -85,6 +85,7 @@ bool Game::loadMedia()
 	}
 	// initialize the music of the MENU state
 	LoadMusic("Main Menu.mp3");
+	
 	return success;
 }
 
@@ -160,12 +161,13 @@ void Game::run()
 					currentState = PLAY;
 					changeMusic("Back On Track.mp3");
 
-					if (!playStateInitialized)
-					{
-						obj.createEssentials(); // making all the objects
-						playStateInitialized = true;
-					}
+			
+				
+					obj.createEssentials(); // making all the objects
+					
+					
 				}
+
 				break;
 
 			case PLAY:
@@ -174,7 +176,10 @@ void Game::run()
 				if (obj.addObstacle())
 					obj.createObstacles();
 
+               
 				break;
+
+			
 
 				// we don't need to use final case here as it is not needed.We are using it below
 			}
@@ -187,7 +192,6 @@ void Game::run()
 		{
 		case MENU:
 			SDL_RenderCopy(Drawing::gRenderer, mainMenuImage, NULL, NULL);
-
 			break;
 
 		case PLAY:
@@ -202,6 +206,8 @@ void Game::run()
 			{
 				currentState = FINAL;
 				changeMusic("Final Music.mp3");
+				
+				
 			}
 			break;
 

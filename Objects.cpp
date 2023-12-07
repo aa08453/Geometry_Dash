@@ -141,3 +141,27 @@ bool Objects::EndGame() const
 {
     return crash;
 }
+
+
+void Objects::reset(){
+     for (Obstacles *u : L)
+    {
+        delete u;
+        u = nullptr;
+    }
+    L.clear();
+
+    // Reset sprite and base
+    delete S;
+    S = new Sprite();
+    delete base;
+    base = new platform();
+
+    // Reset other variables
+    crash = false;
+    flag = false;
+    velocity = 0.0;
+    Prev = nullptr;
+    starting_x = S->getMoverRect().x;
+    starting_y = S->getMoverRect().y;
+}
