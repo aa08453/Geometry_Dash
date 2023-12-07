@@ -178,6 +178,14 @@ void Game::run()
 
                
 				break;
+			case FINAL:
+                if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN) // restart the game on Enter key press after reaching FINAL state
+                {
+                    currentState = MENU;
+                    changeMusic("Main Menu.mp3");
+                    playStateInitialized = false; // reset play state initialization
+                }
+                break;
 
 			
 
@@ -207,7 +215,7 @@ void Game::run()
 				currentState = FINAL;
 				changeMusic("Final Music.mp3");
 				
-				
+				obj.reset();
 			}
 			break;
 

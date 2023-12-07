@@ -149,7 +149,7 @@ void Objects::reset(){
         delete u;
         u = nullptr;
     }
-    L.clear();
+    L.clear();//this is an inbuilt function that clears all the vector
 
     // Reset sprite and base
     delete S;
