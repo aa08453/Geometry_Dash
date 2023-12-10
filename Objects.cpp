@@ -8,19 +8,7 @@ bool Objects::flag = false;
 
 // deleting objects created in the destructor
 Objects::~Objects()
-{
-    for (Obstacles *u : L)
-    {
-        delete u;
-        u = nullptr;
-    }
-
-    delete S;
-    S = nullptr;
-
-    delete base;
-    base = nullptr;
-}
+{   }
 
 // drawing all game objects
 void Objects::drawObjects()
